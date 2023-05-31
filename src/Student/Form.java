@@ -46,7 +46,7 @@ public class Form extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -55,7 +55,7 @@ public class Form extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(47, 47, 47)
                 .addComponent(jLabel2)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(348, Short.MAX_VALUE))
         );
 
         pack();
