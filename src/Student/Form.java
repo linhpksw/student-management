@@ -35,6 +35,7 @@ public class Form extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +68,8 @@ public class Form extends javax.swing.JFrame {
 
         jLabel7.setText("hello guys");
 
+        jLabel8.setText("brrruhhhh");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,7 +100,9 @@ public class Form extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(205, 205, 205)
-                            .addComponent(jLabel6))))
+                            .addComponent(jLabel6)
+                            .addGap(172, 172, 172)
+                            .addComponent(jLabel8))))
                 .addContainerGap(260, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -125,7 +130,9 @@ public class Form extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
                         .addGap(136, 136, 136))))
         );
 
@@ -175,6 +182,7 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
