@@ -49,7 +49,7 @@ public class Form extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap(863, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
@@ -64,7 +64,7 @@ public class Form extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(47, 47, 47)
                 .addComponent(jLabel2)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(456, Short.MAX_VALUE))
         );
 
         pack();
