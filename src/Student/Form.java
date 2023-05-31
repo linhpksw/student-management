@@ -47,6 +47,7 @@ public class Form extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel5.setText("Fix lỗi conflict");
+        jLabel5.setText("TÌm bug");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,6 +67,7 @@ public class Form extends javax.swing.JFrame {
                 .addGap(68, 68, 68))
             .addGroup(layout.createSequentialGroup()
                 .addGap(149, 149, 149)
+                .addGap(497, 497, 497)
                 .addComponent(jLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -85,6 +87,8 @@ public class Form extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(190, 190, 190)
                         .addComponent(jLabel4)
                         .addGap(75, 75, 75))))
         );
