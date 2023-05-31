@@ -70,6 +70,7 @@ public class Form extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel8.setText("FPT trong tim toi");
+        jLabel9.setText("brrruhhhh");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,7 +104,9 @@ public class Form extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(205, 205, 205)
-                            .addComponent(jLabel6))))
+                            .addComponent(jLabel6)
+                            .addGap(172, 172, 172)
+                            .addComponent(jLabel8))))
                 .addContainerGap(260, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -133,7 +136,9 @@ public class Form extends javax.swing.JFrame {
                         .addGap(98, 98, 98)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
                         .addGap(136, 136, 136))))
         );
 
