@@ -10,6 +10,7 @@ package Student;
  * @author Win
  */
 public class SinhVien {
+
     private String fullName;
     private String studentCode;
     private double assignmentGrade;
@@ -73,5 +74,15 @@ public class SinhVien {
     public void setFeGrade(double feGrade) {
         this.feGrade = feGrade;
     }
-    
+
+    public SinhVien(String fullName, String studentCode, double assignmentGrade, double labGrade, double ptGrade, double peGrade, double feGrade) {
+        this.fullName = fullName;
+        this.studentCode = studentCode;
+        this.assignmentGrade = assignmentGrade;
+        this.labGrade = labGrade;
+        this.ptGrade = ptGrade;
+        this.peGrade = peGrade;
+        this.feGrade = feGrade;
+    }
+
 }
