@@ -6,6 +6,8 @@
 package Student;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.util.ArrayList;
 
 /**
@@ -21,10 +23,29 @@ public class Form extends javax.swing.JFrame {
         initComponents();
         init();
     }
-
-    private void init() {
+    private void init(){
+        SinhVien sv = new SinhVien("Nguyen Manh Duc","male", "HE180754", 10,10,10,10,10);
+        SinhVien sv1 = new SinhVien("Le Trong Linh","male", "HE180700", 10,10,10,10,1);
 
         studentTable.fixTable(jScrollPane2);
+        studentTable.addRow(new Object[]{1, sv.getFullName(), sv.getStudentCode(), sv.getSex(), sv.getResult(), sv.status()});
+        studentTable.addRow(new Object[]{2, sv1.getFullName(), sv1.getStudentCode(), sv1.getSex(), sv1.getResult(), sv1.status()});
+        studentTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = studentTable.getSelectedRow();
+                    if (selectedRow != -1) {
+                        String getFullName = studentTable.getValueAt(selectedRow, 1).toString();
+                        String getGender = studentTable.getValueAt(selectedRow, 2).toString();
+                        String getStudentID = studentTable.getValueAt(selectedRow, 3).toString();
+                        double getTotal = Double.parseDouble(studentTable.getValueAt(selectedRow, 4).toString());
+                        String getStatus = studentTable.getValueAt(selectedRow, 5).toString();
+                        System.out.println("Selected Row Data: " + getFullName + " " + getGender + " " + getStudentID + " " + getTotal + " " + getStatus);
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -42,7 +63,6 @@ public class Form extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         studentTable = new Table.Table();
-        jButton2 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,9 +162,7 @@ public class Form extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +221,6 @@ public class Form extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
