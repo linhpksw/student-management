@@ -180,6 +180,7 @@ public class AddForm extends javax.swing.JDialog {
         // Get the entered data
         String fullName = fullNameField.getText();
         String studentId = studentCodeField.getText();
+        String gender = genderField.getSelectedObjects().toString();
         double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
         double labGrade = Double.parseDouble(labGradeField.getText());
         double ptGrade = Double.parseDouble(ptGradeField.getText());
@@ -187,7 +188,7 @@ public class AddForm extends javax.swing.JDialog {
         double feGrade = Double.parseDouble(feGradeField.getText());
 
         // Create a new Student object
-        SinhVien student = new SinhVien(fullName, studentId, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
+        SinhVien student = new SinhVien(fullName, studentId, gender, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
 
         // Do something with the student object (e.g., store it, display it)
         // ...

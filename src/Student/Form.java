@@ -23,9 +23,10 @@ public class Form extends javax.swing.JFrame {
         initComponents();
         init();
     }
-    private void init(){
-        SinhVien sv = new SinhVien("Nguyen Manh Duc","male", "HE180754", 10,10,10,10,10);
-        SinhVien sv1 = new SinhVien("Le Trong Linh","male", "HE180700", 10,10,10,10,1);
+
+    private void init() {
+        SinhVien sv = new SinhVien("Nguyen Manh Duc", "male", "HE180754", 10, 10, 10, 10, 10);
+        SinhVien sv1 = new SinhVien("Le Trong Linh", "male", "HE180700", 10, 10, 10, 10, 1);
 
         studentTable.fixTable(jScrollPane2);
         studentTable.addRow(new Object[]{1, sv.getFullName(), sv.getStudentCode(), sv.getSex(), sv.getResult(), sv.status()});
@@ -63,6 +64,7 @@ public class Form extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         studentTable = new Table.Table();
+        jButton2 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -144,16 +146,16 @@ public class Form extends javax.swing.JFrame {
                         .addGap(60, 60, 60)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(510, 510, 510)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(523, 523, 523)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(195, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(100, 100, 100)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
@@ -173,11 +175,8 @@ public class Form extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-
-        //new AddForm();
-        AddForm addForm = new AddForm();
-        addForm.setVisible(true);
+        AddForm addform = new AddForm();
+        addform.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -221,6 +220,7 @@ public class Form extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
