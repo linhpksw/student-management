@@ -9,7 +9,7 @@ package Student;
  *
  * @author Win
  */
-public class SinhVien {
+public class Student {
 
     private String fullName;
     private String studentCode;
@@ -71,7 +71,7 @@ public class SinhVien {
         return peGrade;
     }
 
-    public SinhVien(String fullName, String studentCode, String sex, double assignmentGrade, double labGrade, double ptGrade, double peGrade, double feGrade) {
+    public Student(String fullName, String studentCode, String sex, double assignmentGrade, double labGrade, double ptGrade, double peGrade, double feGrade) {
         this.fullName = fullName;
         this.studentCode = studentCode;
         this.sex = sex;

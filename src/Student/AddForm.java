@@ -188,7 +188,7 @@ public class AddForm extends javax.swing.JDialog {
         double feGrade = Double.parseDouble(feGradeField.getText());
 
         // Create a new Student object
-        SinhVien student = new SinhVien(fullName, studentId, gender, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
+        Student student = new Student(fullName, studentId, gender, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
 
         // Do something with the student object (e.g., store it, display it)
         // ...
