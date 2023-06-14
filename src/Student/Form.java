@@ -47,7 +47,7 @@ public class Form extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AddForm(Form.this, mng);
-
+                updateTableData();
             }
         });
 //        public void updateTableData(){
