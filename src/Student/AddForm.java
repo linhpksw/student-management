@@ -2,12 +2,32 @@ package Student;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import javax.swing.*;
+import java.awt.*;
 
-public class AddForm extends javax.swing.JDialog {
+public class AddForm extends JDialog {
 
-    public AddForm() {
+    public AddForm(JFrame parentFrame, StudentManager mng) {
+        super(parentFrame, "Add Student", true);
         initComponents();
+        setLocationRelativeTo(parentFrame);
+        addBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String fullName = fullNameField.getText();
+                String studentCode = studentCodeField.getText();
+                String sex = genderField.getSelectedItem().toString();
+                double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
+                double labGrade = Double.parseDouble(labGradeField.getText());
+                double ptGrade = Double.parseDouble(ptGradeField.getText());
+                double peGrade = Double.parseDouble(peGradeField.getText());
+                double feGrade = Double.parseDouble(feGradeField.getText());
+                Student sv = new Student(fullName, studentCode, sex, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
+                mng.themSinhVien(sv);
+                dispose();
+            }
+        });
+        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -30,8 +50,8 @@ public class AddForm extends javax.swing.JDialog {
         assignmentGradeText = new javax.swing.JLabel();
         peGradeText = new javax.swing.JLabel();
         feGradeText = new javax.swing.JLabel();
-        addButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        addBtn = new javax.swing.JButton();
 
         fullNameField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
@@ -79,19 +99,14 @@ public class AddForm extends javax.swing.JDialog {
         feGradeText.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         feGradeText.setText("Final Exam");
 
-        addButton.setBackground(new java.awt.Color(235, 113, 83));
-        addButton.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        addButton.setForeground(new java.awt.Color(255, 255, 255));
-        addButton.setText("Add");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(174, 41, 5));
         jLabel1.setText("ADD STUDENT");
+
+        addBtn.setBackground(new java.awt.Color(235, 113, 83));
+        addBtn.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        addBtn.setForeground(new java.awt.Color(255, 255, 255));
+        addBtn.setText("Add");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,9 +125,11 @@ public class AddForm extends javax.swing.JDialog {
                             .addComponent(studentCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(studentCodeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(genderGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fullNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(addBtn)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,7 +147,7 @@ public class AddForm extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -162,76 +179,89 @@ public class AddForm extends javax.swing.JDialog {
                     .addComponent(ptGradeField, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
                 .addComponent(peGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(peGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(addBtn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(peGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(feGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(feGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // Get the entered data
-        String fullName = fullNameField.getText();
-        String studentId = studentCodeField.getText();
-        String gender = genderField.getSelectedObjects().toString();
-        double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
-        double labGrade = Double.parseDouble(labGradeField.getText());
-        double ptGrade = Double.parseDouble(ptGradeField.getText());
-        double peGrade = Double.parseDouble(peGradeField.getText());
-        double feGrade = Double.parseDouble(feGradeField.getText());
-
-        // Create a new Student object
-        SinhVien student = new SinhVien(fullName, studentId, gender, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
-
-        // Do something with the student object (e.g., store it, display it)
-        // ...
-    }//GEN-LAST:event_addButtonActionPerformed
-
+//    public AddForm(JFrame parentFrame, QuanLi mng) {
+//        super(parentFrame, "Add Student", true);
+//        addBtn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                String fullName = fullNameField.getText();
+//                String studentCode = studentCodeField.getText();
+//                String sex = genderField.getSelectedItem().toString();
+//                double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
+//                double labGrade = Double.parseDouble(labGradeField.getText());
+//                double ptGrade = Double.parseDouble(ptGradeField.getText());
+//                double peGrade = Double.parseDouble(peGradeField.getText());
+//                double feGrade = Double.parseDouble(feGradeField.getText());
+//                Student sv = new Student(fullName, studentCode, sex, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
+//                mng.AddStudent(sv);
+//
+//            }
+//        }
+//        );
+//    }
     private void genderFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_genderFieldActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddForm().setVisible(true);
-            }
-        });
-    }
-
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(AddForm.class
+//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(AddForm.class
+//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(AddForm.class
+//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(AddForm.class
+//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new AddForm().setVisible(true);
+//            }
+//        });
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButton;
+    private javax.swing.JButton addBtn;
     private javax.swing.JTextField assignmentGradeField;
     private javax.swing.JLabel assignmentGradeText;
     private javax.swing.JTextField feGradeField;

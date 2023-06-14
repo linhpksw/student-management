@@ -1,36 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Student;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.util.ArrayList;
+import javax.swing.table.*;
 
-/**
- *
- * @author Trong Linh
- */
 public class Form extends javax.swing.JFrame {
 
     /**
      * Creates new form Form
      */
-    public Form() {
+    private StudentManager mng;
+    private DefaultTableModel tableModel;
+
+    public Form(StudentManager manager) {
+        this.mng = manager;
         initComponents();
         init();
     }
 
     private void init() {
-        SinhVien sv = new SinhVien("Nguyen Manh Duc", "male", "HE180754", 10, 10, 10, 10, 10);
-        SinhVien sv1 = new SinhVien("Le Trong Linh", "male", "HE180700", 10, 10, 10, 10, 1);
 
         studentTable.fixTable(jScrollPane2);
-        studentTable.addRow(new Object[]{1, sv.getFullName(), sv.getStudentCode(), sv.getSex(), sv.getResult(), sv.status()});
-        studentTable.addRow(new Object[]{2, sv1.getFullName(), sv1.getStudentCode(), sv1.getSex(), sv1.getResult(), sv1.status()});
+
         studentTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -42,11 +37,40 @@ public class Form extends javax.swing.JFrame {
                         String getStudentID = studentTable.getValueAt(selectedRow, 3).toString();
                         double getTotal = Double.parseDouble(studentTable.getValueAt(selectedRow, 4).toString());
                         String getStatus = studentTable.getValueAt(selectedRow, 5).toString();
-                        System.out.println("Selected Row Data: " + getFullName + " " + getGender + " " + getStudentID + " " + getTotal + " " + getStatus);
+                        System.out.println("Selected Row Data: " + getFullName + " " + getGender + " " + getStudentID
+                                + " " + getTotal + " " + getStatus);
                     }
                 }
             }
         });
+        jButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddForm(Form.this, mng);
+
+            }
+        });
+//        public void updateTableData(){
+//            studentTable.
+//        }
+    }
+
+    public void updateTableData() {
+        DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
+        model.setRowCount(0); // Clear the existing table data
+
+        ArrayList<Student> danhSachSinhVien = mng.getDanhSachSinhVien();
+
+        for (Student sinhVien : danhSachSinhVien) {
+            Object[] row = {
+                sinhVien.getFullName(),
+                sinhVien.getStudentCode(),
+                sinhVien.getSex(),
+                sinhVien.getResult(),
+                sinhVien.status()
+            };
+            model.addRow(row);
+        }
     }
 
     /**
@@ -64,7 +88,7 @@ public class Form extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         studentTable = new Table.Table();
-        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,38 +148,27 @@ public class Form extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton2.setBackground(new java.awt.Color(235, 113, 83));
-        jButton2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Add");
-        jButton2.setBorder(null);
-        jButton2.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jButton1.setText("jButton1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(523, 523, 523)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(459, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(299, 299, 299))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(84, 84, 84)
+                .addComponent(jButton1)
+                .addGap(92, 92, 92)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
@@ -174,11 +187,10 @@ public class Form extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AddForm addform = new AddForm();
-        addform.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
+//    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+//        AddForm addform = new AddForm(Form.this, mng);
+//        addform.setVisible(true);
+//    }// GEN-LAST:event_jButton2ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -199,28 +211,34 @@ public class Form extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         // </editor-fold>
 
+        // </editor-fold>
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new Form().setVisible(true);
+                StudentManager manager = new StudentManager();
+
+                // Create an instance of Form and pass the manager to the constructor
+                Form form = new Form(manager);
+
+                // Update the table data
+                form.updateTableData();
+
+                // Display the form
+                form.setVisible(true);
             }
         });
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
