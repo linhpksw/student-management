@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Student;
 
 import javax.swing.*;
@@ -10,10 +5,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.util.ArrayList;
 
-/**
- *
- * @author Trong Linh
- */
 public class Form extends javax.swing.JFrame {
 
     /**
@@ -25,8 +16,8 @@ public class Form extends javax.swing.JFrame {
     }
 
     private void init() {
-        SinhVien sv = new SinhVien("Nguyen Manh Duc", "male", "HE180754", 10, 10, 10, 10, 10);
-        SinhVien sv1 = new SinhVien("Le Trong Linh", "male", "HE180700", 10, 10, 10, 10, 1);
+        Student sv = new Student("Nguyen Manh Duc", "male", "HE180754", 10, 10, 10, 10, 10);
+        Student sv1 = new Student("Le Trong Linh", "male", "HE180700", 10, 10, 10, 10, 1);
 
         studentTable.fixTable(jScrollPane2);
         studentTable.addRow(
