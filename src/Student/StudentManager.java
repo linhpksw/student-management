@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 class StudentManager {
 
-    private final ArrayList<Student> danhSachSinhVien;
+    private static ArrayList<Student> danhSachSinhVien;
 
     public StudentManager() {
         danhSachSinhVien = new ArrayList<>();
@@ -23,7 +23,7 @@ class StudentManager {
         danhSachSinhVien.add(sinhVien);
     }
 
-    public Student timKiemSinhVien(String studentID) {
+    public static Student timKiemSinhVien(String studentID) {
         for (Student sinhVien : danhSachSinhVien) {
             if (sinhVien.getStudentCode().equals(studentID)) {
                 return sinhVien;
@@ -32,7 +32,7 @@ class StudentManager {
         return null;
     }
 
-    public void xoaSinhVien(String studentID) {
+    public static void xoaSinhVien(String studentID) {
         Student sinhVien = timKiemSinhVien(studentID);
         if (sinhVien != null) {
             danhSachSinhVien.remove(sinhVien);

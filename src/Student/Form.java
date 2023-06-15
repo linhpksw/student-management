@@ -7,6 +7,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.util.ArrayList;
 import javax.swing.table.*;
+import ActionField.TableActionCellEditor;
+import ActionField.TableActionCellRender;
+import ActionField.TableActionEvent;
 
 public class Form extends javax.swing.JFrame {
 
@@ -19,13 +22,37 @@ public class Form extends javax.swing.JFrame {
     public Form(StudentManager manager) {
         this.mng = manager;
         initComponents();
+        TableActionEvent event = new TableActionEvent() {
+            
+
+            @Override
+            public void onDelete(int row) {
+                if (studentTable.isEditing()) {
+                    studentTable.getCellEditor().stopCellEditing();
+                }
+                String studentID = studentTable.getValueAt(row, 2).toString();
+                System.out.println(studentID);
+                mng.xoaSinhVien(studentID);
+                System.out.println(studentID);
+                System.out.println(mng.getDanhSachSinhVien());
+                updateTableData();
+//                DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
+//                model.removeRow(row);
+                
+            }
+
+           
+        };
+        studentTable.getColumnModel().getColumn(6).setCellRenderer(new TableActionCellRender());
+        studentTable.getColumnModel().getColumn(6).setCellEditor(new TableActionCellEditor(event));
+        
         init();
     }
 
     private void init() {
 
         studentTable.fixTable(jScrollPane2);
-
+        
         studentTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -58,11 +85,12 @@ public class Form extends javax.swing.JFrame {
     public void updateTableData() {
         DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
         model.setRowCount(0); // Clear the existing table data
-
+        int listNumber = 1;
         ArrayList<Student> danhSachSinhVien = mng.getDanhSachSinhVien();
 
         for (Student sinhVien : danhSachSinhVien) {
             Object[] row = {
+                listNumber++,
                 sinhVien.getFullName(),
                 sinhVien.getStudentCode(),
                 sinhVien.getSex(),
@@ -72,7 +100,7 @@ public class Form extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,11 +144,11 @@ public class Form extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No.", "Name", "Student ID", "Gender", "Total", "Status"
+                "No.", "Name", "Student ID", "Gender", "Total", "Status", ""
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -128,6 +156,8 @@ public class Form extends javax.swing.JFrame {
             }
         });
         studentTable.setFocusable(false);
+        studentTable.setRowHeight(65);
+        studentTable.setSelectionBackground(new java.awt.Color(235, 113, 83));
         studentTable.setShowVerticalLines(false);
         jScrollPane2.setViewportView(studentTable);
 
