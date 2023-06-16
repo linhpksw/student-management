@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Table;
-
-/**
- *
- * @author Win
- */
 
 import java.awt.Color;
 import java.awt.Component;
@@ -22,7 +12,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class Table extends JTable {
-    private static final ImageIcon EMPTY_IMAGE = new ImageIcon("Ảnh1.png");
+
+    private static final ImageIcon EMPTY_IMAGE = new ImageIcon("img1.png");
 
     public Table() {
         setShowHorizontalLines(true);
@@ -39,9 +30,9 @@ public class Table extends JTable {
         setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable jtable, Object o, boolean selected, boolean bln1, int i, int i1) {
-                
+
                 Component com = super.getTableCellRendererComponent(jtable, o, selected, bln1, i, i1);
-                com.setBackground(new Color(246,189,176));
+                com.setBackground(new Color(246, 189, 176));
                 setBorder(noFocusBorder);
                 if (selected) {
                     com.setForeground(Color.BLACK);
@@ -62,12 +53,11 @@ public class Table extends JTable {
     public void fixTable(JScrollPane scroll) {
         scroll.setBorder(null);
         scroll.setVerticalScrollBar(new ScrollBar());
-        scroll.getVerticalScrollBar().setBackground(new Color(246,189,176));
-        scroll.getViewport().setBackground(new Color(246,189,176));
+        scroll.getVerticalScrollBar().setBackground(new Color(246, 189, 176));
+        scroll.getViewport().setBackground(new Color(246, 189, 176));
         JPanel p = new JPanel();
-        p.setBackground(new Color(246,189,176));
+        p.setBackground(new Color(246, 189, 176));
         scroll.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
     }
-    
-}
 
+}
