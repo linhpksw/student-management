@@ -10,6 +10,7 @@ import javax.swing.table.*;
 import ActionField.TableActionCellEditor;
 import ActionField.TableActionCellRender;
 import ActionField.TableActionEvent;
+import Search.SearchAction;
 
 public class Form extends javax.swing.JFrame {
 
@@ -21,10 +22,12 @@ public class Form extends javax.swing.JFrame {
 
     public Form(StudentManager manager) {
         this.mng = manager;
-        initComponents();
-        TableActionEvent event = new TableActionEvent() {
-            
+        initComponents();       
+        init();
+    }
 
+    private void init() {
+        TableActionEvent event = new TableActionEvent() {
             @Override
             public void onDelete(int row) {
                 if (studentTable.isEditing()) {
@@ -35,21 +38,52 @@ public class Form extends javax.swing.JFrame {
                 mng.xoaSinhVien(studentID);
                 System.out.println(studentID);
                 System.out.println(mng.getDanhSachSinhVien());
-                updateTableData();
-//                DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
-//                model.removeRow(row);
-                
+                updateTableData();                
+            }           
+        };
+        SearchAction search = new SearchAction() {
+            @Override
+            public void onSearch() {
+                if(textFieldAnimation1.getText().equals("table")){
+                    updateTableData();
+                    return;
+                }
+                String studentID = textFieldAnimation1.getText();
+                Student student = StudentManager.timKiemSinhVien(studentID);
+                if (student != null) {
+//                    JOptionPane.showMessageDialog(null, "Student found:\n" +
+//                            "No. " + (mng.getDanhSachSinhVien().indexOf(student)+1) + "\n" +
+//                            "Student ID: " + student.getStudentCode() + "\n" +
+//                            "Full Name: " + student.getFullName() + "\n" +
+//                            "Sex: " + student.getSex());
+                    DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
+                    model.setRowCount(0); // Clear the existing table data
+            
+                    Object[] row = {
+                        mng.getDanhSachSinhVien().indexOf(student)+1,
+                        student.getFullName(),
+                        student.getStudentCode(),
+                        student.getSex(),
+                        student.getResult(),
+                        student.status()
+                    };
+                     
+                    model.addRow(row);
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "Student not found!");
+                }
             }
 
-           
+            @Override
+            public void resetTable() {
+                updateTableData();
+                
+            }
         };
+        textFieldAnimation1.initEvent(search);
         studentTable.getColumnModel().getColumn(6).setCellRenderer(new TableActionCellRender());
         studentTable.getColumnModel().getColumn(6).setCellEditor(new TableActionCellEditor(event));
-        
-        init();
-    }
-
-    private void init() {
 
         studentTable.fixTable(jScrollPane2);
         
@@ -77,6 +111,7 @@ public class Form extends javax.swing.JFrame {
                 updateTableData();
             }
         });
+        
 //        public void updateTableData(){
 //            studentTable.
 //        }
@@ -117,6 +152,7 @@ public class Form extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         studentTable = new Table.Table();
         jButton1 = new javax.swing.JButton();
+        textFieldAnimation1 = new Search.TextFieldAnimation();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -186,19 +222,24 @@ public class Form extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(459, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(299, 299, 299))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(textFieldAnimation1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(299, 299, 299))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(459, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jButton1)
-                .addGap(92, 92, 92)
+                .addGap(78, 78, 78)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(textFieldAnimation1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(87, 87, 87)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
@@ -274,5 +315,6 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private Table.Table studentTable;
+    private Search.TextFieldAnimation textFieldAnimation1;
     // End of variables declaration//GEN-END:variables
 }
