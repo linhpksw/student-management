@@ -22,6 +22,7 @@ public class Form extends javax.swing.JFrame {
     public Form(StudentManager manager) {
         this.mng = manager;
         initComponents();
+
         TableActionEvent event = new TableActionEvent() {
 
             @Override
@@ -31,7 +32,7 @@ public class Form extends javax.swing.JFrame {
                 }
                 String studentID = studentTable.getValueAt(row, 2).toString();
                 System.out.println(studentID);
-                mng.xoaSinhVien(studentID);
+                StudentManager.xoaSinhVien(studentID);
                 System.out.println(studentID);
                 System.out.println(mng.getDanhSachSinhVien());
                 updateTableData();
@@ -75,9 +76,6 @@ public class Form extends javax.swing.JFrame {
                 updateTableData();
             }
         });
-//        public void updateTableData(){
-//            studentTable.
-//        }
     }
 
     public void updateTableData() {
