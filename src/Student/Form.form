@@ -497,7 +497,7 @@
         </Container>
         <Component class="Search.TextFieldAnimation" name="searchBar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="textFieldAnimation1"/>
+            <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
           </Properties>
         </Component>
       </SubComponents>

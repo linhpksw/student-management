@@ -381,7 +381,7 @@ public class Form extends javax.swing.JFrame {
                     .addContainerGap(478, Short.MAX_VALUE)))
         );
 
-        searchBar.setText("textFieldAnimation1");
+        searchBar.setText("Tìm kiếm");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
