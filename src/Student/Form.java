@@ -237,7 +237,8 @@ public class Form extends javax.swing.JFrame {
         );
 
         jButton1.setBackground(new java.awt.Color(235, 113, 83));
-        jButton1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");
 
         panelRound1.setBackground(new java.awt.Color(255, 255, 255));
