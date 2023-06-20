@@ -3,7 +3,6 @@ package Student;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import java.awt.*;
 
 public class AddForm extends JDialog {
 
@@ -18,7 +17,7 @@ public class AddForm extends JDialog {
                 try {
                     String fullName = fullNameField.getText();
                     String studentCode = studentCodeField.getText();
-                    String sex = genderField.getSelectedItem().toString();
+                    String gender = genderField.getSelectedItem().toString();
                     String OGassignmentGrade = assignmentGradeField.getText();
                     String OGlabGrade = labGradeField.getText();
                     String OGptGrade = ptGradeField.getText();
@@ -39,8 +38,8 @@ public class AddForm extends JDialog {
                         double ptGrade = Double.parseDouble(ptGradeField.getText());
                         double peGrade = Double.parseDouble(peGradeField.getText());
                         double feGrade = Double.parseDouble(feGradeField.getText());
-                        Student sv = new Student(fullName, studentCode, sex, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
-                        mng.themSinhVien(sv);
+                        Student student = new Student(fullName, studentCode, gender, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
+                        mng.addStudent(student);
                         dispose();
                     }
                 } catch (NumberFormatException ex) {
@@ -267,14 +266,14 @@ public class AddForm extends JDialog {
 //            public void actionPerformed(ActionEvent e) {
 //                String fullName = fullNameField.getText();
 //                String studentCode = studentCodeField.getText();
-//                String sex = genderField.getSelectedItem().toString();
+//                String gender = genderField.getSelectedItem().toString();
 //                double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
 //                double labGrade = Double.parseDouble(labGradeField.getText());
 //                double ptGrade = Double.parseDouble(ptGradeField.getText());
 //                double peGrade = Double.parseDouble(peGradeField.getText());
 //                double feGrade = Double.parseDouble(feGradeField.getText());
-//                Student sv = new Student(fullName, studentCode, sex, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
-//                mng.AddStudent(sv);
+//                Student student = new Student(fullName, studentCode, gender, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
+//                mng.AddStudent(student);
 //
 //            }
 //        }

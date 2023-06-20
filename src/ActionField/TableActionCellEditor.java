@@ -5,20 +5,11 @@
  */
 package ActionField;
 
-/**
- *
- * @author Win
- */
-
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 
-/**
- *
- * @author RAVEN
- */
 public class TableActionCellEditor extends DefaultCellEditor {
 
     private TableActionEvent event;
