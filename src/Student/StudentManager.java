@@ -34,6 +34,19 @@ class StudentManager {
         return studentList;
     }
 
+    public int[] getStudentStatusCount() {
+        int completed = 0;
+        int incompleted = 0;
+        for (Student student : studentList) {
+            if ("Completed".equals(student.getStatus())) {
+                completed++;
+            } else if ("Incompleted".equals(student.getStatus())) {
+                incompleted++;
+            }
+        }
+        return new int[]{completed, incompleted, studentList.size()};
+    }
+
     public Object[][] getTableData() {
         Object[][] data = new Object[studentList.size()][8];
         for (int i = 0; i < studentList.size(); i++) {

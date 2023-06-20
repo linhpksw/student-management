@@ -38,6 +38,7 @@ public class Form extends javax.swing.JFrame {
                 StudentManager.deleteStudent(studentID);
 //                System.out.println(mng.getStudentList());
                 updateTableData();
+                updateStudentCounts();
 
             }
         };
@@ -91,7 +92,6 @@ public class Form extends javax.swing.JFrame {
         studentTable.fixTable(jScrollPane2);
 
         studentTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
@@ -159,8 +159,11 @@ public class Form extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 new AddForm(Form.this, mng);
                 updateTableData();
+                updateStudentCounts();  // add this line
             }
         });
+
+        updateStudentCounts();
     }
 
     public void updateTableData() {
@@ -182,6 +185,13 @@ public class Form extends javax.swing.JFrame {
         }
     }
 
+    public void updateStudentCounts() {
+        int[] counts = mng.getStudentStatusCount();
+        completed.setText(String.valueOf(counts[0]));
+        incompleted.setText(String.valueOf(counts[1]));
+        total.setText(String.valueOf(counts[2]));
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
@@ -190,18 +200,15 @@ public class Form extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        studentTable = new Table.Table();
         addStudentBtn = new javax.swing.JButton();
         statisticPanel = new Detail.PanelRound();
-        passLabel = new javax.swing.JLabel();
+        completedLabel = new javax.swing.JLabel();
         statisticLabel = new javax.swing.JLabel();
-        cntPassLabel = new javax.swing.JLabel();
+        completed = new javax.swing.JLabel();
         notPassLabel = new javax.swing.JLabel();
-        cntNotPassLabel = new javax.swing.JLabel();
+        incompleted = new javax.swing.JLabel();
         totalLabel = new javax.swing.JLabel();
-        cntTotalLabel = new javax.swing.JLabel();
+        total = new javax.swing.JLabel();
         searchBar = new Search.TextFieldAnimation();
         jLabel5 = new javax.swing.JLabel();
         noInfoPanel = new Detail.PanelRound();
@@ -228,6 +235,9 @@ public class Form extends javax.swing.JFrame {
         tgLabel = new javax.swing.JLabel();
         tg = new javax.swing.JLabel();
         panelRound2 = new Detail.PanelRound();
+        panelRound1 = new Detail.PanelRound();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        studentTable = new Table.Table();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -244,51 +254,6 @@ public class Form extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(245, 234, 232));
 
-        jPanel3.setBackground(new java.awt.Color(246, 189, 176));
-        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        studentTable.setBackground(new java.awt.Color(246, 189, 176));
-        studentTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        studentTable.setForeground(new java.awt.Color(246, 189, 176));
-        studentTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "No.", "Name", "Student ID", "Gender", "Total", "Status", ""
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        studentTable.setFocusable(false);
-        studentTable.setRowHeight(65);
-        studentTable.setSelectionBackground(new java.awt.Color(235, 113, 83));
-        studentTable.setShowVerticalLines(false);
-        jScrollPane2.setViewportView(studentTable);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 894, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         addStudentBtn.setBackground(new java.awt.Color(235, 113, 83));
         addStudentBtn.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         addStudentBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -300,41 +265,48 @@ public class Form extends javax.swing.JFrame {
         statisticPanel.setRoundTopLeft(50);
         statisticPanel.setRoundTopRight(50);
 
-        passLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        passLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Detail/Icon/passIcon.png"))); // NOI18N
-        passLabel.setText("Completed");
-        passLabel.setIconTextGap(10);
+        completedLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        completedLabel.setForeground(new java.awt.Color(71, 85, 105));
+        completedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Detail/Icon/passIcon.png"))); // NOI18N
+        completedLabel.setText("Completed");
+        completedLabel.setIconTextGap(10);
 
         statisticLabel.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        statisticLabel.setForeground(new java.awt.Color(75, 85, 99));
         statisticLabel.setText("Student Statistic");
         statisticLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        cntPassLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        cntPassLabel.setText("0");
+        completed.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        completed.setForeground(new java.awt.Color(100, 116, 139));
+        completed.setText("0");
 
         notPassLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        notPassLabel.setForeground(new java.awt.Color(71, 85, 105));
         notPassLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Detail/Icon/failIcon.png"))); // NOI18N
-        notPassLabel.setText("Not completed");
+        notPassLabel.setText("Incompleted");
         notPassLabel.setIconTextGap(10);
 
-        cntNotPassLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        cntNotPassLabel.setText("0");
+        incompleted.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        incompleted.setForeground(new java.awt.Color(100, 116, 139));
+        incompleted.setText("0");
 
         totalLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        totalLabel.setForeground(new java.awt.Color(71, 85, 105));
         totalLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Detail/Icon/sumIcon.png"))); // NOI18N
         totalLabel.setText("Total");
         totalLabel.setIconTextGap(10);
 
-        cntTotalLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        cntTotalLabel.setText("0");
+        total.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        total.setForeground(new java.awt.Color(100, 116, 139));
+        total.setText("0");
 
-        statisticPanel.setLayer(passLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        statisticPanel.setLayer(completedLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         statisticPanel.setLayer(statisticLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        statisticPanel.setLayer(cntPassLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        statisticPanel.setLayer(completed, javax.swing.JLayeredPane.DEFAULT_LAYER);
         statisticPanel.setLayer(notPassLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        statisticPanel.setLayer(cntNotPassLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        statisticPanel.setLayer(incompleted, javax.swing.JLayeredPane.DEFAULT_LAYER);
         statisticPanel.setLayer(totalLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        statisticPanel.setLayer(cntTotalLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        statisticPanel.setLayer(total, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout statisticPanelLayout = new javax.swing.GroupLayout(statisticPanel);
         statisticPanel.setLayout(statisticPanelLayout);
@@ -343,43 +315,47 @@ public class Form extends javax.swing.JFrame {
             .addGroup(statisticPanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(notPassLabel)
-                    .addComponent(passLabel)
-                    .addComponent(totalLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cntNotPassLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cntPassLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cntTotalLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(66, 66, 66))
+                    .addGroup(statisticPanelLayout.createSequentialGroup()
+                        .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(notPassLabel)
+                            .addComponent(totalLabel))
+                        .addGap(63, 63, 63)
+                        .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(incompleted)
+                            .addComponent(total)))
+                    .addGroup(statisticPanelLayout.createSequentialGroup()
+                        .addComponent(completedLabel)
+                        .addGap(79, 79, 79)
+                        .addComponent(completed)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statisticPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(80, Short.MAX_VALUE)
                 .addComponent(statisticLabel)
-                .addGap(83, 83, 83))
+                .addGap(78, 78, 78))
         );
         statisticPanelLayout.setVerticalGroup(
             statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statisticPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(25, 25, 25)
                 .addComponent(statisticLabel)
                 .addGap(18, 18, 18)
                 .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passLabel)
-                    .addComponent(cntPassLabel))
-                .addGap(18, 18, 18)
+                    .addComponent(completedLabel)
+                    .addComponent(completed))
+                .addGap(20, 20, 20)
                 .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(notPassLabel)
-                    .addComponent(cntNotPassLabel))
-                .addGap(18, 18, 18)
+                    .addComponent(incompleted))
+                .addGap(20, 20, 20)
                 .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalLabel)
-                    .addComponent(cntTotalLabel))
+                    .addComponent(total))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(174, 41, 5));
-        jLabel5.setText("STUDENT MANAGEMENT");
+        jLabel5.setText("STUDENT MANAGEMENT SYSTEM");
 
         noInfoPanel.setBackground(new java.awt.Color(255, 255, 255));
         noInfoPanel.setRoundBottomLeft(50);
@@ -406,14 +382,14 @@ public class Form extends javax.swing.JFrame {
         infoPanel.setVisible(false);
 
         idLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        idLabel.setForeground(new java.awt.Color(30, 41, 59));
+        idLabel.setForeground(new java.awt.Color(75, 85, 99));
         idLabel.setText("ID:");
         idLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         infoPanel.add(idLabel);
         idLabel.setBounds(40, 70, 33, 32);
 
         id.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        id.setForeground(new java.awt.Color(30, 41, 59));
+        id.setForeground(new java.awt.Color(75, 85, 99));
         id.setText("HE182116");
         id.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         infoPanel.add(id);
@@ -454,9 +430,9 @@ public class Form extends javax.swing.JFrame {
 
         status.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         status.setForeground(new java.awt.Color(225, 29, 72));
-        status.setText("Not Completed");
+        status.setText("Incompleted");
         infoPanel.add(status);
-        status.setBounds(200, 260, 150, 30);
+        status.setBounds(200, 260, 122, 30);
 
         ptLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         ptLabel.setForeground(new java.awt.Color(71, 85, 105));
@@ -540,7 +516,45 @@ public class Form extends javax.swing.JFrame {
 
         noInfoPanel.setLayer(infoPanel, javax.swing.JLayeredPane.DRAG_LAYER);
         noInfoPanel.add(infoPanel);
-        infoPanel.setBounds(0, 0, 389, 620);
+        infoPanel.setBounds(0, 0, 380, 620);
+
+        panelRound1.setBackground(new java.awt.Color(246, 189, 176));
+        panelRound1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelRound1.setRoundBottomLeft(50);
+        panelRound1.setRoundBottomRight(50);
+        panelRound1.setRoundTopLeft(50);
+        panelRound1.setRoundTopRight(50);
+
+        studentTable.setBackground(new java.awt.Color(246, 189, 176));
+        studentTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        studentTable.setForeground(new java.awt.Color(246, 189, 176));
+        studentTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "No.", "Name", "Student ID", "Gender", "Total", "Status", ""
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        studentTable.setColumnSelectionAllowed(true);
+        studentTable.setFocusable(false);
+        studentTable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        studentTable.setRowHeight(65);
+        studentTable.setSelectionBackground(new java.awt.Color(235, 113, 83));
+        studentTable.setShowVerticalLines(false);
+        jScrollPane2.setViewportView(studentTable);
+        studentTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+        panelRound1.add(jScrollPane2);
+        jScrollPane2.setBounds(10, 20, 970, 710);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -549,54 +563,52 @@ public class Form extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(126, 126, 126)
-                                .addComponent(addStudentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addComponent(jLabel5)))
-                .addGap(42, 42, 42)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(statisticPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(noInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 32, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addStudentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(171, 171, 171))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5)
+                        .addGap(220, 220, 220)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(noInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(statisticPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
                         .addComponent(statisticPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
+                        .addGap(30, 30, 30)
                         .addComponent(noInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(addStudentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(36, 36, 36)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addComponent(jLabel5)
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addStudentBtn))
+                        .addGap(18, 18, 18)
+                        .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -644,27 +656,26 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JButton addStudentBtn;
     private javax.swing.JLabel ass;
     private javax.swing.JLabel assLabel;
-    private javax.swing.JLabel cntNotPassLabel;
-    private javax.swing.JLabel cntPassLabel;
-    private javax.swing.JLabel cntTotalLabel;
+    private javax.swing.JLabel completed;
+    private javax.swing.JLabel completedLabel;
     private javax.swing.JLabel fe;
     private javax.swing.JLabel feLabel;
     private javax.swing.JLabel gender;
     private javax.swing.JLabel genderLabel;
     private javax.swing.JLabel id;
     private javax.swing.JLabel idLabel;
+    private javax.swing.JLabel incompleted;
     private Detail.PanelRound infoPanel;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel name;
     private javax.swing.JLabel noInfo;
     private Detail.PanelRound noInfoPanel;
     private javax.swing.JLabel notPassLabel;
+    private Detail.PanelRound panelRound1;
     private Detail.PanelRound panelRound2;
-    private javax.swing.JLabel passLabel;
     private javax.swing.JLabel pe;
     private javax.swing.JLabel peLabel;
     private javax.swing.JLabel pt;
@@ -678,6 +689,7 @@ public class Form extends javax.swing.JFrame {
     private Table.Table studentTable;
     private javax.swing.JLabel tg;
     private javax.swing.JLabel tgLabel;
+    private javax.swing.JLabel total;
     private javax.swing.JLabel totalLabel;
     private javax.swing.JLabel ws;
     private javax.swing.JLabel wsLabel;
