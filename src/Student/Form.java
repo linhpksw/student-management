@@ -537,21 +537,20 @@ public class Form extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, true
+                false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        studentTable.setColumnSelectionAllowed(true);
         studentTable.setFocusable(false);
         studentTable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         studentTable.setRowHeight(65);
         studentTable.setSelectionBackground(new java.awt.Color(235, 113, 83));
         studentTable.setShowVerticalLines(false);
+        studentTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(studentTable);
-        studentTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         panelRound1.add(jScrollPane2);
         jScrollPane2.setBounds(10, 20, 970, 710);
