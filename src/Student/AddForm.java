@@ -3,7 +3,6 @@ package Student;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import java.awt.*;
 
 public class AddForm extends JDialog {
 
@@ -11,23 +10,92 @@ public class AddForm extends JDialog {
         super(parentFrame, "Add Student", true);
         initComponents();
         setLocationRelativeTo(parentFrame);
+
         addBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String fullName = fullNameField.getText();
-                String studentCode = studentCodeField.getText();
-                String sex = genderField.getSelectedItem().toString();
-                double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
-                double labGrade = Double.parseDouble(labGradeField.getText());
-                double ptGrade = Double.parseDouble(ptGradeField.getText());
-                double peGrade = Double.parseDouble(peGradeField.getText());
-                double feGrade = Double.parseDouble(feGradeField.getText());
-                Student sv = new Student(fullName, studentCode, sex, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
-                mng.themSinhVien(sv);
-                dispose();
+                try {
+                    String fullName = fullNameField.getText();
+                    String studentCode = studentCodeField.getText();
+                    String gender = genderField.getSelectedItem().toString();
+                    String OGassignmentGrade = assignmentGradeField.getText();
+                    String OGlabGrade = labGradeField.getText();
+                    String OGptGrade = ptGradeField.getText();
+                    String OGpeGrade = peGradeField.getText();
+                    String OGfeGrade = feGradeField.getText();
+
+                    if (!isNotEmptyFields(fullName, studentCode, OGassignmentGrade, OGlabGrade, OGptGrade, OGpeGrade, OGfeGrade)) {
+                        Notification.showErrorMessage(AddForm.this, "Some fields are blank. Please check the fields.");
+                    } else if (isContainNumbers(fullName)) {
+                        Notification.showErrorMessage(AddForm.this, "Name can't contain numbers. Please check the Name field.");
+                    } else if (!isValidStudentCode(studentCode)) {
+                        Notification.showErrorMessage(AddForm.this, "Student ID is not in correct format. Please check the Student ID field.");
+                    } else if (!isValidRange(OGassignmentGrade, OGlabGrade, OGptGrade, OGpeGrade, OGfeGrade)) {
+                        Notification.showErrorMessage(AddForm.this, "Some grades are not in correct range. Please check the grade fields.");
+                    } else {
+                        double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
+                        double labGrade = Double.parseDouble(labGradeField.getText());
+                        double ptGrade = Double.parseDouble(ptGradeField.getText());
+                        double peGrade = Double.parseDouble(peGradeField.getText());
+                        double feGrade = Double.parseDouble(feGradeField.getText());
+                        Student student = new Student(fullName, studentCode, gender, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
+                        mng.addStudent(student);
+                        dispose();
+                    }
+                } catch (NumberFormatException ex) {
+                    Notification.showErrorMessage(AddForm.this, "Invalid numeric input. Please check the grade fields.");
+                }
             }
         });
+
         setVisible(true);
+    }
+
+    private boolean isValidRange(String OGassignmentGrade, String OGlabGrade, String OGptGrade, String OgpeGrade, String OGfeGrade) {
+        double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
+        double labGrade = Double.parseDouble(labGradeField.getText());
+        double ptGrade = Double.parseDouble(ptGradeField.getText());
+        double peGrade = Double.parseDouble(peGradeField.getText());
+        double feGrade = Double.parseDouble(feGradeField.getText());
+        return assignmentGrade >= 0 && assignmentGrade <= 10
+                && labGrade >= 0 && labGrade <= 10
+                && ptGrade >= 0 && ptGrade <= 10
+                && peGrade >= 0 && peGrade <= 10
+                && feGrade >= 0 && feGrade <= 10;
+    }
+
+    public static boolean isNotEmptyFields(String fullName, String studentCode, String assignmentGrade, String labGrade, String ptGrade, String peGrade, String feGrade) {
+        return !fullName.isEmpty() && !studentCode.isEmpty()
+                && !assignmentGrade.isEmpty() && !labGrade.isEmpty()
+                && !labGrade.isEmpty() && !ptGrade.isEmpty()
+                && !peGrade.isEmpty() && !feGrade.isEmpty();
+    }
+
+    public static boolean isValidStudentCode(String input) {
+        if (input.length() != 8) {
+            return false;
+        }
+
+        if (!input.startsWith("HE")) {
+            return false;
+        }
+
+        for (int i = 2; i < input.length(); i++) {
+            if (!Character.isDigit(input.charAt(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean isContainNumbers(String fullName) {
+        for (char c : fullName.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @SuppressWarnings("unchecked")
@@ -127,9 +195,7 @@ public class AddForm extends JDialog {
                             .addComponent(genderGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fullNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(addBtn)))
+                            .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,7 +213,7 @@ public class AddForm extends JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -179,17 +245,14 @@ public class AddForm extends JDialog {
                     .addComponent(ptGradeField, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
                 .addComponent(peGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(peGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(addBtn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(feGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(peGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(feGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60))
         );
 
@@ -203,14 +266,14 @@ public class AddForm extends JDialog {
 //            public void actionPerformed(ActionEvent e) {
 //                String fullName = fullNameField.getText();
 //                String studentCode = studentCodeField.getText();
-//                String sex = genderField.getSelectedItem().toString();
+//                String gender = genderField.getSelectedItem().toString();
 //                double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
 //                double labGrade = Double.parseDouble(labGradeField.getText());
 //                double ptGrade = Double.parseDouble(ptGradeField.getText());
 //                double peGrade = Double.parseDouble(peGradeField.getText());
 //                double feGrade = Double.parseDouble(feGradeField.getText());
-//                Student sv = new Student(fullName, studentCode, sex, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
-//                mng.AddStudent(sv);
+//                Student student = new Student(fullName, studentCode, gender, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
+//                mng.AddStudent(student);
 //
 //            }
 //        }

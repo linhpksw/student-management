@@ -1,104 +1,113 @@
 package Student;
 
+import java.text.DecimalFormat;
+
 public class Student {
 
-    private String fullName;
-    private String studentCode;
-    private String sex;
-    private double assignmentGrade;
-    private double labGrade;
-    private double ptGrade;
-    private double peGrade;
-    private double feGrade;
+    private String name;
+    private String studentID;
+    private String gender;
+    private double pt;
+    private double ass;
+    private double ws;
+    private double pe;
+    private double fe;
 
-    public String getFullName() {
-        return fullName;
+    public Student(String name, String studentID, String gender,
+            double ass, double ws, double pt, double pe, double fe) {
+        this.name = name;
+        this.studentID = studentID;
+        this.gender = gender;
+        this.ass = roundedNumber(ass);
+        this.ws = roundedNumber(ws);
+        this.pt = roundedNumber(pt);
+        this.pe = roundedNumber(pe);
+        this.fe = roundedNumber(fe);
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public String getName() {
+        return name;
     }
 
-    public String getSex() {
-        return sex;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public String getGender() {
+        return gender;
     }
 
-    public String getStudentCode() {
-        return studentCode;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public void setStudentCode(String studentCode) {
-        this.studentCode = studentCode;
+    public String getStudentID() {
+        return studentID;
     }
 
-    public double getAssignmentGrade() {
-        return assignmentGrade;
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
     }
 
-    public void setAssignmentGrade(double assignmentGrade) {
-        this.assignmentGrade = assignmentGrade;
+    public double getAss() {
+        return ass;
     }
 
-    public double getLabGrade() {
-        return labGrade;
+    public void setAss(double ass) {
+        this.ass = ass;
     }
 
-    public void setLabGrade(double labGrade) {
-        this.labGrade = labGrade;
+    public double getWs() {
+        return ws;
     }
 
-    public double getPtGrade() {
-        return ptGrade;
+    public void setWs(double ws) {
+        this.ws = ws;
     }
 
-    public void setPtGrade(double ptGrade) {
-        this.ptGrade = ptGrade;
+    public double getPt() {
+        return pt;
     }
 
-    public double getPeGrade() {
-        return peGrade;
+    public void setPt(double pt) {
+        this.pt = pt;
     }
 
-    public Student(String fullName, String studentCode, String sex, double assignmentGrade, double labGrade, double ptGrade, double peGrade, double feGrade) {
-        this.fullName = fullName;
-        this.studentCode = studentCode;
-        this.sex = sex;
-        this.assignmentGrade = assignmentGrade;
-        this.labGrade = labGrade;
-        this.ptGrade = ptGrade;
-        this.peGrade = peGrade;
-        this.feGrade = feGrade;
+    public double getPe() {
+        return pe;
     }
 
-    public void setPeGrade(double peGrade) {
-        this.peGrade = peGrade;
+    public void setPe(double pe) {
+        this.pe = pe;
     }
 
-    public double getFeGrade() {
-        return feGrade;
+    public double getFe() {
+        return fe;
     }
 
-    public void setFeGrade(double feGrade) {
-        this.feGrade = feGrade;
+    public void setFe(double fe) {
+        this.fe = fe;
     }
 
-    public double getResult() {
-        return calculateResult();
+    public double getTg() {
+        return calcTotalGrade();
     }
 
-    public final double calculateResult() {
-        return 0.1 * ptGrade + 0.1 * assignmentGrade + 0.1 * labGrade + 0.4 * peGrade + 0.3 * feGrade;
+    public final double calcTotalGrade() {
+        return roundedNumber(0.1 * pt + 0.1 * ass + 0.1 * ws + 0.4 * pe + 0.3 * fe);
     }
 
-    public String status() {
-        if (ptGrade > 0.0 && assignmentGrade > 0.0 && labGrade > 0.0 && peGrade > 0.0 && feGrade >= 4.0 && calculateResult() >= 5) {
-            return "completed";
+    public String getStatus() {
+        if (pt > 0.0 && ass > 0.0 && ws > 0.0 && pe > 0.0 && fe >= 4.0 && calcTotalGrade() >= 5) {
+            return "Completed";
         } else {
-            return "incompleted";
+            return "Incompleted";
         }
+    }
+
+    public static double roundedNumber(double number) {
+        DecimalFormat df = new DecimalFormat("#.##");
+        double roundedNumber = Double.parseDouble(df.format(number));
+        return roundedNumber;
     }
 }

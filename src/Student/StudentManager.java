@@ -4,48 +4,48 @@ import java.util.ArrayList;
 
 class StudentManager {
 
-    private static ArrayList<Student> danhSachSinhVien;
+    private static ArrayList<Student> studentList;
 
     public StudentManager() {
-        danhSachSinhVien = new ArrayList<>();
+        studentList = new ArrayList<>();
     }
 
-    public void themSinhVien(Student sinhVien) {
-        danhSachSinhVien.add(sinhVien);
+    public void addStudent(Student student) {
+        studentList.add(student);
     }
 
-    public static Student timKiemSinhVien(String studentID) {
-        for (Student sinhVien : danhSachSinhVien) {
-            if (sinhVien.getStudentCode().equals(studentID)) {
-                return sinhVien;
+    public static Student searchStudent(String studentID) {
+        for (Student student : studentList) {
+            if (student.getStudentID().equals(studentID)) {
+                return student;
             }
         }
         return null;
     }
 
-    public static void xoaSinhVien(String studentID) {
-        Student sinhVien = timKiemSinhVien(studentID);
-        if (sinhVien != null) {
-            danhSachSinhVien.remove(sinhVien);
+    public static void deleteStudent(String studentID) {
+        Student student = searchStudent(studentID);
+        if (student != null) {
+            studentList.remove(student);
         }
     }
 
-    public ArrayList<Student> getDanhSachSinhVien() {
-        return danhSachSinhVien;
+    public ArrayList<Student> getStudentList() {
+        return studentList;
     }
 
     public Object[][] getTableData() {
-        Object[][] data = new Object[danhSachSinhVien.size()][8];
-        for (int i = 0; i < danhSachSinhVien.size(); i++) {
-            Student sinhVien = danhSachSinhVien.get(i);
-            data[i][0] = sinhVien.getStudentCode();
-            data[i][1] = sinhVien.getFullName();
-            data[i][2] = sinhVien.getSex();
-            data[i][3] = sinhVien.getPeGrade();
-            data[i][4] = sinhVien.getAssignmentGrade();
-            data[i][5] = sinhVien.getLabGrade();
-            data[i][6] = sinhVien.getPeGrade();
-            data[i][7] = sinhVien.getFeGrade();
+        Object[][] data = new Object[studentList.size()][8];
+        for (int i = 0; i < studentList.size(); i++) {
+            Student student = studentList.get(i);
+            data[i][0] = student.getStudentID();
+            data[i][1] = student.getName();
+            data[i][2] = student.getGender();
+            data[i][3] = student.getPt();
+            data[i][4] = student.getAss();
+            data[i][5] = student.getWs();
+            data[i][6] = student.getPe();
+            data[i][7] = student.getFe();
         }
         return data;
     }
