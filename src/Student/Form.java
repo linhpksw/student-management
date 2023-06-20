@@ -39,7 +39,7 @@ public class Form extends javax.swing.JFrame {
 //                System.out.println(mng.getStudentList());
                 updateTableData();
                 updateStudentCounts();
-
+                updateTableVisibility();
             }
         };
 
@@ -139,11 +139,9 @@ public class Form extends javax.swing.JFrame {
 
                         // Make infoPanel visible and noInfoPanel invisible
                         infoPanel.setVisible(true);
-//                    noInfoPanel.setVisible(false);
                     } else {
                         // If no row is selected, make infoPanel invisible and noInfoPanel visible
                         infoPanel.setVisible(false);
-//                    noInfoPanel.setVisible(true);
                     }
                 }
 
@@ -159,11 +157,13 @@ public class Form extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 new AddForm(Form.this, mng);
                 updateTableData();
-                updateStudentCounts();  // add this line
+                updateStudentCounts();
+                updateTableVisibility();
             }
         });
 
         updateStudentCounts();
+        updateTableVisibility();
     }
 
     public void updateTableData() {
@@ -190,6 +190,18 @@ public class Form extends javax.swing.JFrame {
         completed.setText(String.valueOf(counts[0]));
         incompleted.setText(String.valueOf(counts[1]));
         total.setText(String.valueOf(counts[2]));
+    }
+
+    public void updateTableVisibility() {
+        if (mng.getStudentList().isEmpty()) {
+            // If there are no students, show the 'noTablePanel' and hide the 'tablePanel'
+            noTablePanel.setVisible(true);
+            tablePanel.setVisible(false);
+        } else {
+            // If there are students, show the 'tablePanel' and hide the 'noTablePanel'
+            noTablePanel.setVisible(false);
+            tablePanel.setVisible(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -235,9 +247,11 @@ public class Form extends javax.swing.JFrame {
         tgLabel = new javax.swing.JLabel();
         tg = new javax.swing.JLabel();
         panelRound2 = new Detail.PanelRound();
-        panelRound1 = new Detail.PanelRound();
+        tablePanel = new Detail.PanelRound();
         jScrollPane2 = new javax.swing.JScrollPane();
         studentTable = new Table.Table();
+        noTablePanel = new Detail.PanelRound();
+        noTableLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -355,7 +369,7 @@ public class Form extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(174, 41, 5));
-        jLabel5.setText("STUDENT MANAGEMENT SYSTEM");
+        jLabel5.setText("STUDENT MANAGEMENT APPLICATION");
 
         noInfoPanel.setBackground(new java.awt.Color(255, 255, 255));
         noInfoPanel.setRoundBottomLeft(50);
@@ -518,12 +532,13 @@ public class Form extends javax.swing.JFrame {
         noInfoPanel.add(infoPanel);
         infoPanel.setBounds(0, 0, 380, 620);
 
-        panelRound1.setBackground(new java.awt.Color(246, 189, 176));
-        panelRound1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        panelRound1.setRoundBottomLeft(50);
-        panelRound1.setRoundBottomRight(50);
-        panelRound1.setRoundTopLeft(50);
-        panelRound1.setRoundTopRight(50);
+        tablePanel.setBackground(new java.awt.Color(246, 189, 176));
+        tablePanel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tablePanel.setRoundBottomLeft(50);
+        tablePanel.setRoundBottomRight(50);
+        tablePanel.setRoundTopLeft(50);
+        tablePanel.setRoundTopRight(50);
+        tablePanel.setVisible(false);
 
         studentTable.setBackground(new java.awt.Color(246, 189, 176));
         studentTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -552,30 +567,44 @@ public class Form extends javax.swing.JFrame {
         studentTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(studentTable);
 
-        panelRound1.add(jScrollPane2);
+        tablePanel.add(jScrollPane2);
         jScrollPane2.setBounds(10, 20, 970, 710);
+
+        noTablePanel.setBackground(new java.awt.Color(246, 189, 176));
+        noTablePanel.setRoundBottomLeft(50);
+        noTablePanel.setRoundBottomRight(50);
+        noTablePanel.setRoundTopLeft(50);
+        noTablePanel.setRoundTopRight(50);
+
+        noTableLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 30)); // NOI18N
+        noTableLabel.setForeground(new java.awt.Color(190, 81, 8));
+        noTableLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Detail/Icon/noTable.png"))); // NOI18N
+        noTableLabel.setText("No student at this time");
+        noTableLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        noTableLabel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        noTablePanel.add(noTableLabel);
+        noTableLabel.setBounds(230, 80, 510, 590);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(noTablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30))
+                            .addComponent(jLabel5)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addStudentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(171, 171, 171))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addGap(220, 220, 220)))
+                                .addComponent(addStudentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(noInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(statisticPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -591,13 +620,16 @@ public class Form extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(noInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
                         .addComponent(jLabel5)
-                        .addGap(41, 41, 41)
+                        .addGap(30, 30, 30)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addStudentBtn))
                         .addGap(18, 18, 18)
-                        .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(noTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -606,8 +638,8 @@ public class Form extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -672,8 +704,9 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JLabel name;
     private javax.swing.JLabel noInfo;
     private Detail.PanelRound noInfoPanel;
+    private javax.swing.JLabel noTableLabel;
+    private Detail.PanelRound noTablePanel;
     private javax.swing.JLabel notPassLabel;
-    private Detail.PanelRound panelRound1;
     private Detail.PanelRound panelRound2;
     private javax.swing.JLabel pe;
     private javax.swing.JLabel peLabel;
@@ -686,6 +719,7 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JLabel statusLabel;
     private Detail.ImageAvatar studentImg;
     private Table.Table studentTable;
+    private Detail.PanelRound tablePanel;
     private javax.swing.JLabel tg;
     private javax.swing.JLabel tgLabel;
     private javax.swing.JLabel total;
