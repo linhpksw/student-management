@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Search;
 
-/**
- *
- * @author Win
- */
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FontMetrics;
@@ -19,6 +10,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.color.ColorSpace;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -31,10 +23,10 @@ import javax.swing.border.EmptyBorder;
 
 public class TextFieldAnimation extends JTextField {
 
-    private Color backgroundColor = Color.WHITE;
+    private final Color backgroundColor = Color.decode("#f6bdb0");
     private final Icon iconSearch;
-    private Color animationColor = new Color(235, 113, 83);
-    private String hintText = "Search ...";
+    private final Color animationColor = new Color(235, 113, 83);
+    private final String hintText = "Search Here...";
     public boolean show;
     private final Icon iconClose;
     private Image image;
@@ -42,13 +34,12 @@ public class TextFieldAnimation extends JTextField {
     public TextFieldAnimation() {
         setBackground(new Color(255, 255, 255, 0));
         setOpaque(false);
-        setBorder(new EmptyBorder(10, 10, 10, 50));
-        setText("");
+        setBorder(new EmptyBorder(20, 20, 20, 50));
 
-        setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        setSelectionColor(new Color(80, 199, 255));
+        setSelectionColor(Color.decode("#7e22ce"));
         iconSearch = new ImageIcon(getClass().getResource("/Search/search.png"));
         iconClose = new ImageIcon(getClass().getResource("/Search/close.png"));
+
         addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseMoved(MouseEvent me) {
@@ -78,7 +69,6 @@ public class TextFieldAnimation extends JTextField {
     }
 
     protected void paintComponent(Graphics grphcs) {
-
         int width = getWidth();
         int height = getHeight();
         Graphics2D g2 = (Graphics2D) grphcs;
@@ -87,17 +77,21 @@ public class TextFieldAnimation extends JTextField {
         g2.setColor(backgroundColor);
         g2.fillRoundRect(0, 0, width, height, height, height);
         super.paintComponent(grphcs);
-        int marginButton = 5;
+
+        int marginButton = 15; // increase this to make the oval smaller
         int buttonSize = height - marginButton * 2;
         GradientPaint gra = new GradientPaint(0, 0, new Color(255, 255, 255), width, 0, animationColor);
         g2.setPaint(gra);
-        g2.fillOval(width - height + 3, marginButton, buttonSize, buttonSize);
+//        g2.fillOval(width - height + 3, marginButton, buttonSize, buttonSize);
+        g2.fillOval(width - height + marginButton, marginButton, buttonSize, buttonSize); // the oval position is shifted to the left due to increased marginButton
 
-        int marginImage = 5;
+        int marginImage = 10;
         int imageSize = buttonSize - marginImage * 2;
         Image image = ((ImageIcon) iconSearch).getImage();
 
-        g2.drawImage(image, width - height + marginImage + 3, marginButton + marginImage, imageSize, imageSize, null);
+//        g2.drawImage(image, width - height + marginImage + 3, marginButton + marginImage, imageSize, imageSize, null);
+        g2.drawImage(image, width - height + marginButton + (buttonSize - imageSize) / 2, marginButton + (buttonSize - imageSize) / 2, imageSize, imageSize, null);
+
         g2.dispose();
     }
 
@@ -113,7 +107,7 @@ public class TextFieldAnimation extends JTextField {
             int c1 = getForeground().getRGB();
             int m = 0xfefefefe;
             int c2 = ((c0 & m) >>> 1) + ((c1 & m) >>> 1);
-            g.setColor(new Color(c2, true));
+            g.setColor(Color.decode("#6b7280")); // change placeholder color
             g.drawString(hintText, ins.left, h / 2 + fm.getAscent() / 2 - 2);
         }
     }

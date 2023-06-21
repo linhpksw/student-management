@@ -13,6 +13,7 @@ import ActionField.TableActionEvent;
 import Detail.StudentInfo;
 import Search.SearchAction;
 import java.awt.Color;
+import java.awt.Cursor;
 
 public class Form extends javax.swing.JFrame {
 
@@ -63,12 +64,12 @@ public class Form extends javax.swing.JFrame {
                     model.setRowCount(0); // Clear the existing table data
 
                     Object[] row = {
-                            mng.getStudentList().indexOf(student) + 1,
-                            student.getName(),
-                            student.getStudentID(),
-                            student.getGender(),
-                            student.getTg(),
-                            student.getStatus()
+                        mng.getStudentList().indexOf(student) + 1,
+                        student.getName(),
+                        student.getStudentID(),
+                        student.getGender(),
+                        student.getTg(),
+                        student.getStatus()
                     };
 
                     model.addRow(row);
@@ -152,7 +153,7 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
-        addStudentBtn.addActionListener(new ActionListener() {
+        addStudentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AddForm(Form.this, mng);
@@ -174,12 +175,12 @@ public class Form extends javax.swing.JFrame {
 
         for (Student student : studentList) {
             Object[] row = {
-                    listNumber++,
-                    student.getName(),
-                    student.getStudentID(),
-                    student.getGender(),
-                    student.getTg(),
-                    student.getStatus()
+                listNumber++,
+                student.getName(),
+                student.getStudentID(),
+                student.getGender(),
+                student.getTg(),
+                student.getStatus()
             };
             model.addRow(row);
         }
@@ -208,12 +209,11 @@ public class Form extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        addStudentBtn = new javax.swing.JButton();
         statisticPanel = new Detail.PanelRound();
         completedLabel = new javax.swing.JLabel();
         statisticLabel = new javax.swing.JLabel();
@@ -253,25 +253,22 @@ public class Form extends javax.swing.JFrame {
         studentTable = new Table.Table();
         noTablePanel = new Detail.PanelRound();
         noTableLabel = new javax.swing.JLabel();
-        button1 = new Detail.Button();
+        addStudentButton = new Detail.Button();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 1432, Short.MAX_VALUE));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1432, Short.MAX_VALUE)
+        );
         jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 827, Short.MAX_VALUE));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 827, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(245, 234, 232));
-
-        addStudentBtn.setBackground(new java.awt.Color(235, 113, 83));
-        addStudentBtn.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        addStudentBtn.setForeground(new java.awt.Color(255, 255, 255));
-        addStudentBtn.setText("Add");
 
         statisticPanel.setBackground(new java.awt.Color(255, 255, 255));
         statisticPanel.setRoundBottomLeft(50);
@@ -325,52 +322,52 @@ public class Form extends javax.swing.JFrame {
         javax.swing.GroupLayout statisticPanelLayout = new javax.swing.GroupLayout(statisticPanel);
         statisticPanel.setLayout(statisticPanelLayout);
         statisticPanelLayout.setHorizontalGroup(
-                statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(statisticPanelLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(statisticPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(statisticPanelLayout.createSequentialGroup()
-                                                .addGroup(statisticPanelLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(notPassLabel)
-                                                        .addComponent(totalLabel))
-                                                .addGap(63, 63, 63)
-                                                .addGroup(statisticPanelLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(incompleted)
-                                                        .addComponent(total)))
-                                        .addGroup(statisticPanelLayout.createSequentialGroup()
-                                                .addComponent(completedLabel)
-                                                .addGap(79, 79, 79)
-                                                .addComponent(completed)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                statisticPanelLayout.createSequentialGroup()
-                                        .addContainerGap(80, Short.MAX_VALUE)
-                                        .addComponent(statisticLabel)
-                                        .addGap(78, 78, 78)));
+            statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statisticPanelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(statisticPanelLayout.createSequentialGroup()
+                        .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(notPassLabel)
+                            .addComponent(totalLabel))
+                        .addGap(63, 63, 63)
+                        .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(incompleted)
+                            .addComponent(total)))
+                    .addGroup(statisticPanelLayout.createSequentialGroup()
+                        .addComponent(completedLabel)
+                        .addGap(79, 79, 79)
+                        .addComponent(completed)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statisticPanelLayout.createSequentialGroup()
+                .addContainerGap(80, Short.MAX_VALUE)
+                .addComponent(statisticLabel)
+                .addGap(78, 78, 78))
+        );
         statisticPanelLayout.setVerticalGroup(
-                statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(statisticPanelLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(statisticLabel)
-                                .addGap(18, 18, 18)
-                                .addGroup(statisticPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(completedLabel)
-                                        .addComponent(completed))
-                                .addGap(20, 20, 20)
-                                .addGroup(statisticPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(notPassLabel)
-                                        .addComponent(incompleted))
-                                .addGap(20, 20, 20)
-                                .addGroup(statisticPanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(totalLabel)
-                                        .addComponent(total))
-                                .addContainerGap(25, Short.MAX_VALUE)));
+            statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statisticPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(statisticLabel)
+                .addGap(18, 18, 18)
+                .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(completedLabel)
+                    .addComponent(completed))
+                .addGap(20, 20, 20)
+                .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(notPassLabel)
+                    .addComponent(incompleted))
+                .addGap(20, 20, 20)
+                .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalLabel)
+                    .addComponent(total))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        searchBar.setForeground(new java.awt.Color(113, 48, 4));
+        searchBar.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        searchBar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 26)); // NOI18N
+        searchBar.setMargin(new java.awt.Insets(10, 20, 10, 20));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(174, 41, 5));
@@ -549,18 +546,19 @@ public class Form extends javax.swing.JFrame {
         studentTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         studentTable.setForeground(new java.awt.Color(246, 189, 176));
         studentTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
+            new Object [][] {
 
-                },
-                new String[] {
-                        "No.", "Name", "Student ID", "Gender", "Total", "Status", ""
-                }) {
-            boolean[] canEdit = new boolean[] {
-                    false, false, false, false, false, false, true
+            },
+            new String [] {
+                "No.", "Name", "Student ID", "Gender", "Total", "Status", ""
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         studentTable.setFocusable(false);
@@ -589,114 +587,83 @@ public class Form extends javax.swing.JFrame {
         noTablePanel.add(noTableLabel);
         noTableLabel.setBounds(230, 80, 510, 590);
 
-        button1.setBackground(new java.awt.Color(237, 131, 105));
-        button1.setBorder(null);
-        button1.setForeground(new java.awt.Color(255, 255, 255));
-        button1.setText("New Students");
-        button1.setBorderColor(new java.awt.Color(245, 234, 232));
-        button1.setColor(new java.awt.Color(190, 81, 8));
-        button1.setColorOver(new java.awt.Color(190, 81, 8));
-        button1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        button1.setRadius(50);
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
+        addStudentButton.setBorder(null);
+        addStudentButton.setForeground(new java.awt.Color(255, 255, 255));
+        addStudentButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Detail/Icon/add.png"))); // NOI18N
+        addStudentButton.setText("New Students");
+        addStudentButton.setToolTipText("");
+        addStudentButton.setBorderColor(new java.awt.Color(245, 234, 232));
+        addStudentButton.setColor(new java.awt.Color(190, 81, 8));
+        addStudentButton.setColorClick(new java.awt.Color(190, 81, 8));
+        addStudentButton.setColorOver(new java.awt.Color(228, 97, 9));
+        addStudentButton.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        addStudentButton.setIconTextGap(12);
+        addStudentButton.setRadius(70);
+        addStudentButton.setCursor(new Cursor(12));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 989,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(2, 2, 2)
-                                                .addComponent(noTablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 989,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(127, 127, 127)
-                                                .addGroup(jPanel2Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel5)
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addComponent(searchBar,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 265,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(124, 124, 124)
-                                                                .addComponent(addStudentBtn,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 104,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(94, 94, 94)
-                                                                .addComponent(button1,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 217,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(30, 30, 30)
-                                .addGroup(jPanel2Layout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(noInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(statisticPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 30, Short.MAX_VALUE)));
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(noTablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90)
+                        .addComponent(addStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(statisticPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(noInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
         jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(jPanel2Layout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(statisticPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(30, 30, 30)
-                                                .addComponent(noInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 625,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(11, 11, 11)
-                                                .addComponent(jLabel5)
-                                                .addGap(29, 29, 29)
-                                                .addGroup(jPanel2Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(addStudentBtn)
-                                                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(jPanel2Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(noTablePanel,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE))))
-                                .addContainerGap(30, Short.MAX_VALUE)));
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(statisticPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(noInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel5)
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(noTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_button1ActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -733,10 +700,9 @@ public class Form extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addStudentBtn;
+    private Detail.Button addStudentButton;
     private javax.swing.JLabel ass;
     private javax.swing.JLabel assLabel;
-    private Detail.Button button1;
     private javax.swing.JLabel completed;
     private javax.swing.JLabel completedLabel;
     private javax.swing.JLabel fe;

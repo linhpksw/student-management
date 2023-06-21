@@ -1,15 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ActionField;
-
-/**
- *
- * @author Win
- */
-
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -21,10 +10,6 @@ import java.awt.geom.Ellipse2D;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
-/**
- *
- * @author RAVEN
- */
 public class ActionButton extends JButton {
 
     private boolean mousePress;
@@ -55,9 +40,9 @@ public class ActionButton extends JButton {
         int x = (width - size) / 2;
         int y = (height - size) / 2;
         if (mousePress) {
-            g2.setColor(new Color(158,158,158));
+            g2.setColor(new Color(158, 158, 158));
         } else {
-            g2.setColor(new Color(246,189,176));
+            g2.setColor(new Color(246, 189, 176));
         }
         g2.fill(new Ellipse2D.Double(x, y, size, size));
         g2.dispose();
