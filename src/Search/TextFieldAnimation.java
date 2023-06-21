@@ -9,8 +9,6 @@ package Search;
  *
  * @author Win
  */
-
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FontMetrics;
@@ -31,18 +29,20 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-public class TextFieldAnimation extends JTextField{
+public class TextFieldAnimation extends JTextField {
+
     private Color backgroundColor = Color.WHITE;
     private final Icon iconSearch;
-    private Color animationColor = new Color(3, 175, 255);
+    private Color animationColor = new Color(235, 113, 83);
     private String hintText = "Search ...";
     public boolean show;
     private final Icon iconClose;
     private Image image;
-    public TextFieldAnimation(){
-        setBackground(new Color(255,255,255,0));
+
+    public TextFieldAnimation() {
+        setBackground(new Color(255, 255, 255, 0));
         setOpaque(false);
-        setBorder(new EmptyBorder(10,10,10,50));
+        setBorder(new EmptyBorder(10, 10, 10, 50));
         setText("");
 
         setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -59,15 +59,16 @@ public class TextFieldAnimation extends JTextField{
                 }
             }
         });
-        
+
     }
-    public void initEvent(SearchAction s){
+
+    public void initEvent(SearchAction s) {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
                 if (SwingUtilities.isLeftMouseButton(me)) {
-                    if(checkMouseOver(me.getPoint())){
-                        if(!show){
+                    if (checkMouseOver(me.getPoint())) {
+                        if (!show) {
                             s.onSearch();
                         }
                     }
@@ -75,8 +76,9 @@ public class TextFieldAnimation extends JTextField{
             }
         });
     }
-    protected void paintComponent(Graphics grphcs){
-        
+
+    protected void paintComponent(Graphics grphcs) {
+
         int width = getWidth();
         int height = getHeight();
         Graphics2D g2 = (Graphics2D) grphcs;
@@ -90,15 +92,15 @@ public class TextFieldAnimation extends JTextField{
         GradientPaint gra = new GradientPaint(0, 0, new Color(255, 255, 255), width, 0, animationColor);
         g2.setPaint(gra);
         g2.fillOval(width - height + 3, marginButton, buttonSize, buttonSize);
-        
+
         int marginImage = 5;
         int imageSize = buttonSize - marginImage * 2;
-        Image image = ((ImageIcon) iconSearch).getImage(); 
-        
-       
+        Image image = ((ImageIcon) iconSearch).getImage();
+
         g2.drawImage(image, width - height + marginImage + 3, marginButton + marginImage, imageSize, imageSize, null);
         g2.dispose();
     }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -115,6 +117,7 @@ public class TextFieldAnimation extends JTextField{
             g.drawString(hintText, ins.left, h / 2 + fm.getAscent() / 2 - 2);
         }
     }
+
     private boolean checkMouseOver(Point mouse) {
         int width = getWidth();
         int height = getHeight();
@@ -125,4 +128,3 @@ public class TextFieldAnimation extends JTextField{
         return circle.contains(mouse);
     }
 }
-
