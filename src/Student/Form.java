@@ -252,6 +252,7 @@ public class Form extends javax.swing.JFrame {
         studentTable = new Table.Table();
         noTablePanel = new Detail.PanelRound();
         noTableLabel = new javax.swing.JLabel();
+        button1 = new Detail.Button();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -585,6 +586,21 @@ public class Form extends javax.swing.JFrame {
         noTablePanel.add(noTableLabel);
         noTableLabel.setBounds(230, 80, 510, 590);
 
+        button1.setBackground(new java.awt.Color(237, 131, 105));
+        button1.setBorder(null);
+        button1.setForeground(new java.awt.Color(255, 255, 255));
+        button1.setText("New Students");
+        button1.setBorderColor(new java.awt.Color(245, 234, 232));
+        button1.setColor(new java.awt.Color(190, 81, 8));
+        button1.setColorOver(new java.awt.Color(190, 81, 8));
+        button1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        button1.setRadius(50);
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -598,12 +614,14 @@ public class Form extends javax.swing.JFrame {
                         .addComponent(noTablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addStudentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(124, 124, 124)
+                                .addComponent(addStudentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(94, 94, 94)
+                                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(noInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -622,10 +640,11 @@ public class Form extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel5)
-                        .addGap(30, 30, 30)
+                        .addGap(29, 29, 29)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addStudentBtn))
+                            .addComponent(addStudentBtn)
+                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(noTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -648,6 +667,10 @@ public class Form extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button1ActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -687,6 +710,7 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JButton addStudentBtn;
     private javax.swing.JLabel ass;
     private javax.swing.JLabel assLabel;
+    private Detail.Button button1;
     private javax.swing.JLabel completed;
     private javax.swing.JLabel completedLabel;
     private javax.swing.JLabel fe;
