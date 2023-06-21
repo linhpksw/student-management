@@ -110,8 +110,8 @@ public class Button extends JButton {
         Graphics2D g2 = (Graphics2D) grphcs;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         //  Paint Border
-        g2.setColor(borderColor);
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
+//        g2.setColor(borderColor);
+//        g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
         g2.setColor(getBackground());
         //  Border set 2 Pix
         g2.fillRoundRect(2, 2, getWidth() - 4, getHeight() - 4, radius, radius);
