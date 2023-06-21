@@ -120,12 +120,19 @@ public class AddForm extends JDialog {
         feGradeText = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
+        fullNameErrorNotif = new javax.swing.JLabel();
+        studentCodeErrorNotif = new javax.swing.JLabel();
+        labGradeErrorNotif = new javax.swing.JLabel();
+        assignmentGradeErrorNotif = new javax.swing.JLabel();
+        ptGradeErrorNotif = new javax.swing.JLabel();
+        peGradeErrorNotif = new javax.swing.JLabel();
+        feGradeErrorNotif = new javax.swing.JLabel();
 
-        fullNameField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        fullNameField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        studentCodeField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        studentCodeField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        genderField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        genderField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         genderField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
         genderField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,127 +140,185 @@ public class AddForm extends JDialog {
             }
         });
 
-        labGradeField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labGradeField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        ptGradeField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        ptGradeField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ptGradeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ptGradeFieldActionPerformed(evt);
+            }
+        });
 
-        assignmentGradeField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        assignmentGradeField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        peGradeField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        peGradeField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        feGradeField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        feGradeField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        fullNameText.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        fullNameText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         fullNameText.setText("Name");
 
-        studentCodeText.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        studentCodeText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         studentCodeText.setText("Student ID");
 
-        genderGradeText.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        genderGradeText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         genderGradeText.setText("Gender");
 
-        labGradeText.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labGradeText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labGradeText.setText("LAB");
 
-        ptGradeText.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        ptGradeText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         ptGradeText.setText("Progress Test");
 
-        assignmentGradeText.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        assignmentGradeText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         assignmentGradeText.setText("Assignment");
 
-        peGradeText.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        peGradeText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         peGradeText.setText("Practical Exam");
 
-        feGradeText.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        feGradeText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         feGradeText.setText("Final Exam");
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(174, 41, 5));
         jLabel1.setText("ADD STUDENT");
 
         addBtn.setBackground(new java.awt.Color(235, 113, 83));
-        addBtn.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        addBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText("Add");
+
+        fullNameErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        fullNameErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
+        fullNameErrorNotif.setText("jLabel2");
+
+        studentCodeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        studentCodeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
+        studentCodeErrorNotif.setText("jLabel2");
+
+        labGradeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labGradeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
+        labGradeErrorNotif.setText("jLabel2");
+
+        assignmentGradeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        assignmentGradeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
+        assignmentGradeErrorNotif.setText("jLabel2");
+
+        ptGradeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ptGradeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
+        ptGradeErrorNotif.setText("jLabel2");
+
+        peGradeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        peGradeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
+        peGradeErrorNotif.setText("jLabel2");
+
+        feGradeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        feGradeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
+        feGradeErrorNotif.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(583, 583, 583)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(fullNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(assignmentGradeErrorNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ptGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(feGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(assignmentGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(assignmentGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ptGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ptGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(peGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(peGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(peGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap(72, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(feGradeErrorNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(studentCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentCodeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(genderGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fullNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fullNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fullNameErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(studentCodeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(studentCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(studentCodeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(genderGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(peGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(assignmentGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(assignmentGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ptGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ptGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(peGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(feGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(74, 74, 74))))
+                            .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(303, 303, 303)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(62, 62, 62))
-                            .addComponent(fullNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fullNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(28, 28, 28)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fullNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fullNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fullNameErrorNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentCodeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(assignmentGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(studentCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(assignmentGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(assignmentGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(assignmentGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentCodeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(genderGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ptGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(genderField, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(ptGradeField, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ptGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ptGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(peGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(peGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(peGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(feGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(feGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
 
         pack();
@@ -282,6 +347,10 @@ public class AddForm extends JDialog {
     private void genderFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_genderFieldActionPerformed
+
+    private void ptGradeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ptGradeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ptGradeFieldActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -325,21 +394,28 @@ public class AddForm extends JDialog {
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
+    private javax.swing.JLabel assignmentGradeErrorNotif;
     private javax.swing.JTextField assignmentGradeField;
     private javax.swing.JLabel assignmentGradeText;
+    private javax.swing.JLabel feGradeErrorNotif;
     private javax.swing.JTextField feGradeField;
     private javax.swing.JLabel feGradeText;
+    private javax.swing.JLabel fullNameErrorNotif;
     private javax.swing.JTextField fullNameField;
     private javax.swing.JLabel fullNameText;
     private javax.swing.JComboBox<String> genderField;
     private javax.swing.JLabel genderGradeText;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labGradeErrorNotif;
     private javax.swing.JTextField labGradeField;
     private javax.swing.JLabel labGradeText;
+    private javax.swing.JLabel peGradeErrorNotif;
     private javax.swing.JTextField peGradeField;
     private javax.swing.JLabel peGradeText;
+    private javax.swing.JLabel ptGradeErrorNotif;
     private javax.swing.JTextField ptGradeField;
     private javax.swing.JLabel ptGradeText;
+    private javax.swing.JLabel studentCodeErrorNotif;
     private javax.swing.JTextField studentCodeField;
     private javax.swing.JLabel studentCodeText;
     // End of variables declaration//GEN-END:variables
