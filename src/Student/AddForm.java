@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.util.Set;
-import java.util.HashSet;
 import java.awt.Color;
 
 public class AddForm extends JDialog {
@@ -35,14 +34,14 @@ public class AddForm extends JDialog {
                 String OGfeGrade = feGradeField.getText();
 
                 boolean flag = true;
-                flag = checkFullName(fullName);
-                flag = checkStudentCode(studentCode, mng);
-                flag = checkGender(gender);
-                flag = checkGrade(OGassignmentGrade, assignmentGradeText, assignmentGradeField, assignmentGradeErrorNotif);
-                flag = checkGrade(OGlabGrade, labGradeText, labGradeField, labGradeErrorNotif);
-                flag = checkGrade(OGptGrade, ptGradeText, ptGradeField, ptGradeErrorNotif);
-                flag = checkGrade(OGpeGrade, peGradeText, peGradeField, peGradeErrorNotif);
-                flag = checkGrade(OGfeGrade, feGradeText, feGradeField, feGradeErrorNotif);
+                flag &= checkFullName(fullName);
+                flag &= checkStudentCode(studentCode, mng);
+                flag &= checkGender(gender);
+                flag &= checkGrade(OGassignmentGrade, assignmentGradeText, assignmentGradeField, assignmentGradeErrorNotif);
+                flag &= checkGrade(OGlabGrade, labGradeText, labGradeField, labGradeErrorNotif);
+                flag &= checkGrade(OGptGrade, ptGradeText, ptGradeField, ptGradeErrorNotif);
+                flag &= checkGrade(OGpeGrade, peGradeText, peGradeField, peGradeErrorNotif);
+                flag &= checkGrade(OGfeGrade, feGradeText, feGradeField, feGradeErrorNotif);
 
                 if (flag == true) {
                     double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
@@ -105,7 +104,7 @@ public class AddForm extends JDialog {
     }
 
     private boolean checkGender(String gender) {
-        if (!(gender.equals("Male")) || !(gender.equals("Female")) || !(gender.equals("Other"))) {
+        if (!gender.equals("Male") && !gender.equals("Female") && !gender.equals("Other")) {
             genderErrorNotif.setText("Please choose a correct option!");
             return false;
         }
@@ -122,7 +121,7 @@ public class AddForm extends JDialog {
         }
 
         try {
-            double grade = Double.parseDouble(OGgrade);
+            Double.parseDouble(OGgrade);
         } catch (NumberFormatException ex) {
             errorNotif.setText("Grade must be a value!");
             field.setForeground(new Color(244, 67, 54));
