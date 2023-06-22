@@ -20,61 +20,59 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="583" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="583" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="assignmentGradeErrorNotif" alignment="0" max="32767" attributes="0"/>
+                          <Component id="labGradeErrorNotif" alignment="0" max="32767" attributes="0"/>
+                          <Component id="feGradeErrorNotif" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="ptGradeText" min="-2" pref="128" max="-2" attributes="0"/>
                                   <Component id="feGradeText" min="-2" pref="143" max="-2" attributes="0"/>
                                   <Component id="feGradeField" min="-2" pref="128" max="-2" attributes="0"/>
                                   <Component id="labGradeField" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
                                   <Component id="labGradeText" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                  <Component id="labGradeErrorNotif" min="-2" pref="205" max="-2" attributes="0"/>
                                   <Component id="assignmentGradeText" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                                   <Component id="assignmentGradeField" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
                                   <Component id="ptGradeField" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                                  <Component id="ptGradeErrorNotif" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
                                   <Component id="peGradeText" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                                   <Component id="peGradeField" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                                  <Component id="peGradeErrorNotif" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                                  <Component id="ptGradeErrorNotif" alignment="0" pref="244" max="32767" attributes="0"/>
+                                  <Component id="peGradeErrorNotif" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="72" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="feGradeErrorNotif" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="fullNameField" min="-2" pref="357" max="-2" attributes="0"/>
-                          <Component id="fullNameText" min="-2" pref="113" max="-2" attributes="0"/>
-                          <Component id="fullNameErrorNotif" alignment="0" min="-2" pref="357" max="-2" attributes="0"/>
-                          <Component id="studentCodeText" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                          <Component id="studentCodeField" alignment="0" min="-2" pref="357" max="-2" attributes="0"/>
-                          <Component id="studentCodeErrorNotif" alignment="0" min="-2" pref="357" max="-2" attributes="0"/>
-                          <Component id="genderGradeText" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                          <Component id="genderField" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                          <Component id="addBtn" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="fullNameField" min="-2" pref="357" max="-2" attributes="0"/>
+                                  <Component id="fullNameText" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="studentCodeText" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="studentCodeField" alignment="0" min="-2" pref="357" max="-2" attributes="0"/>
+                                  <Component id="genderGradeText" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="genderField" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                                  <Component id="addBtn" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
+                                  <Component id="fullNameErrorNotif" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
+                                  <Component id="studentCodeErrorNotif" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
+                                  <Component id="genderErrorNotif" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="303" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="303" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -124,7 +122,10 @@
                   <Component id="genderField" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="ptGradeErrorNotif" min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="ptGradeErrorNotif" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="genderErrorNotif" min="-2" pref="29" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="peGradeText" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -165,12 +166,12 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="Male"/>
-            <StringItem index="1" value="Female"/>
-            <StringItem index="2" value="Other"/>
-          </StringArray>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] {&quot;Choose...&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Other&quot; })" type="code"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -315,7 +316,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="36" green="43" red="f4" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="studentCodeErrorNotif">
@@ -326,7 +326,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="36" green="43" red="f4" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labGradeErrorNotif">
@@ -337,7 +336,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="36" green="43" red="f4" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="assignmentGradeErrorNotif">
@@ -348,7 +346,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="36" green="43" red="f4" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="ptGradeErrorNotif">
@@ -359,7 +356,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="36" green="43" red="f4" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="peGradeErrorNotif">
@@ -370,7 +366,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="36" green="43" red="f4" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="feGradeErrorNotif">
@@ -381,7 +376,16 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="36" green="43" red="f4" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="genderErrorNotif">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="36" green="43" red="f4" type="rgb"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

@@ -3,6 +3,9 @@ package Student;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.util.Set;
+import java.util.HashSet;
+import java.awt.Color;
 
 public class AddForm extends JDialog {
 
@@ -14,41 +17,135 @@ public class AddForm extends JDialog {
         addBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    String fullName = fullNameField.getText();
-                    String studentCode = studentCodeField.getText();
-                    String gender = genderField.getSelectedItem().toString();
-                    String OGassignmentGrade = assignmentGradeField.getText();
-                    String OGlabGrade = labGradeField.getText();
-                    String OGptGrade = ptGradeField.getText();
-                    String OGpeGrade = peGradeField.getText();
-                    String OGfeGrade = feGradeField.getText();
+                fullNameField.setText(removeExtraSpaces(fullNameField.getText()));
+                studentCodeField.setText(studentCodeField.getText().trim());
+                assignmentGradeField.setText(assignmentGradeField.getText().trim());
+                labGradeField.setText(labGradeField.getText().trim());
+                ptGradeField.setText(ptGradeField.getText().trim());
+                peGradeField.setText(peGradeField.getText().trim());
+                feGradeField.setText(feGradeField.getText().trim());
 
-                    if (!isNotEmptyFields(fullName, studentCode, OGassignmentGrade, OGlabGrade, OGptGrade, OGpeGrade, OGfeGrade)) {
-                        Notification.showErrorMessage(AddForm.this, "Some fields are blank. Please check the fields.");
-                    } else if (isContainNumbers(fullName)) {
-                        Notification.showErrorMessage(AddForm.this, "Name can't contain numbers. Please check the Name field.");
-                    } else if (!isValidStudentCode(studentCode)) {
-                        Notification.showErrorMessage(AddForm.this, "Student ID is not in correct format. Please check the Student ID field.");
-                    } else if (!isValidRange(OGassignmentGrade, OGlabGrade, OGptGrade, OGpeGrade, OGfeGrade)) {
-                        Notification.showErrorMessage(AddForm.this, "Some grades are not in correct range. Please check the grade fields.");
-                    } else {
-                        double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
-                        double labGrade = Double.parseDouble(labGradeField.getText());
-                        double ptGrade = Double.parseDouble(ptGradeField.getText());
-                        double peGrade = Double.parseDouble(peGradeField.getText());
-                        double feGrade = Double.parseDouble(feGradeField.getText());
-                        Student student = new Student(fullName, studentCode, gender, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
-                        mng.addStudent(student);
-                        dispose();
-                    }
-                } catch (NumberFormatException ex) {
-                    Notification.showErrorMessage(AddForm.this, "Invalid numeric input. Please check the grade fields.");
+                String fullName = fullNameField.getText();
+                String studentCode = studentCodeField.getText();
+                String gender = genderField.getSelectedItem().toString();
+                String OGassignmentGrade = assignmentGradeField.getText();
+                String OGlabGrade = labGradeField.getText();
+                String OGptGrade = ptGradeField.getText();
+                String OGpeGrade = peGradeField.getText();
+                String OGfeGrade = feGradeField.getText();
+
+                boolean flag = true;
+                flag = checkFullName(fullName);
+                flag = checkStudentCode(studentCode, mng);
+                flag = checkGender(gender);
+                flag = checkGrade(OGassignmentGrade, assignmentGradeText, assignmentGradeField, assignmentGradeErrorNotif);
+                flag = checkGrade(OGlabGrade, labGradeText, labGradeField, labGradeErrorNotif);
+                flag = checkGrade(OGptGrade, ptGradeText, ptGradeField, ptGradeErrorNotif);
+                flag = checkGrade(OGpeGrade, peGradeText, peGradeField, peGradeErrorNotif);
+                flag = checkGrade(OGfeGrade, feGradeText, feGradeField, feGradeErrorNotif);
+
+                if (flag == true) {
+                    double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
+                    double labGrade = Double.parseDouble(labGradeField.getText());
+                    double ptGrade = Double.parseDouble(ptGradeField.getText());
+                    double peGrade = Double.parseDouble(peGradeField.getText());
+                    double feGrade = Double.parseDouble(feGradeField.getText());
+                    Student student = new Student(fullName, studentCode, gender, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
+                    mng.addStudent(student);
+                    dispose();
                 }
+
             }
         });
 
         setVisible(true);
+    }
+
+    private boolean checkFullName(String fullName) {
+        if (fullName.isEmpty()) {
+            fullNameErrorNotif.setText("Name can't be empty!");
+            fullNameField.setForeground(new Color(244, 67, 54));
+            return false;
+        }
+
+        if (!isValidName(fullName)) {
+            fullNameErrorNotif.setText("Name is not in correct format!");
+            fullNameField.setForeground(new Color(244, 67, 54));
+            return false;
+        }
+
+        fullNameErrorNotif.setText("");
+        fullNameField.setForeground(new Color(0, 0, 0));
+        return true;
+    }
+
+    private boolean checkStudentCode(String studentCode, StudentManager mng) {
+        if (studentCode.isEmpty()) {
+            studentCodeErrorNotif.setText("Student ID can't be empty!");
+            studentCodeField.setForeground(new Color(244, 67, 54));
+            return false;
+        }
+
+        if (!isValidStudentCode(studentCode)) {
+            studentCodeErrorNotif.setText("Student ID must be in HExxxxxx format!");
+            studentCodeField.setForeground(new Color(244, 67, 54));
+            return false;
+        }
+
+        Set<String> SetStudentCode = mng.getAllStudentIDs();
+        if (SetStudentCode.contains(studentCode)) {
+            studentCodeErrorNotif.setText("Oops, this ID has already been taken!");
+            studentCodeField.setForeground(new Color(244, 67, 54));
+            return false;
+        }
+
+        studentCodeErrorNotif.setText("");
+        studentCodeField.setForeground(new Color(0, 0, 0));
+        return true;
+    }
+
+    private boolean checkGender(String gender) {
+        if (gender.equals("Choose...")) {
+            genderErrorNotif.setText("Please choose a correct option!");
+            return false;
+        }
+
+        genderErrorNotif.setText("");
+        return true;
+    }
+
+    private boolean checkGrade(String OGgrade, JLabel title, JTextField field, JLabel errorNotif) {
+        if (OGgrade.isEmpty()) {
+            errorNotif.setText("Grade can't be empty!");
+            field.setForeground(new Color(244, 67, 54));
+            return false;
+        }
+
+        try {
+            double grade = Double.parseDouble(OGgrade);
+        } catch (NumberFormatException ex) {
+            errorNotif.setText("Grade must be a value!");
+            field.setForeground(new Color(244, 67, 54));
+            return false;
+        }
+
+        double grade = Double.parseDouble(OGgrade);
+        if (grade < 0 || grade > 10) {
+            errorNotif.setText("Grade must be from 0 to 10!");
+            field.setForeground(new Color(244, 67, 54));
+            return false;
+        }
+
+        errorNotif.setText("");
+        field.setForeground(new Color(0, 0, 0));
+        return true;
+    }
+
+    public static String removeExtraSpaces(String input) {
+        String trimmedString = input.trim();
+        String result = trimmedString.replaceAll("\\s+", " ");
+
+        return result;
     }
 
     private boolean isValidRange(String OGassignmentGrade, String OGlabGrade, String OGptGrade, String OgpeGrade, String OGfeGrade) {
@@ -64,14 +161,7 @@ public class AddForm extends JDialog {
                 && feGrade >= 0 && feGrade <= 10;
     }
 
-    public static boolean isNotEmptyFields(String fullName, String studentCode, String assignmentGrade, String labGrade, String ptGrade, String peGrade, String feGrade) {
-        return !fullName.isEmpty() && !studentCode.isEmpty()
-                && !assignmentGrade.isEmpty() && !labGrade.isEmpty()
-                && !labGrade.isEmpty() && !ptGrade.isEmpty()
-                && !peGrade.isEmpty() && !feGrade.isEmpty();
-    }
-
-    public static boolean isValidStudentCode(String input) {
+    private static boolean isValidStudentCode(String input) {
         if (input.length() != 8) {
             return false;
         }
@@ -89,13 +179,14 @@ public class AddForm extends JDialog {
         return true;
     }
 
-    public static boolean isContainNumbers(String fullName) {
-        for (char c : fullName.toCharArray()) {
-            if (Character.isDigit(c)) {
-                return true;
+    private static boolean isValidName(String fullName) {
+        for (int i = 0; i < fullName.length(); i++) {
+            char c = fullName.charAt(i);
+            if (!Character.isLetter(c) && c != ' ' && c != '-') {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     @SuppressWarnings("unchecked")
@@ -127,13 +218,16 @@ public class AddForm extends JDialog {
         ptGradeErrorNotif = new javax.swing.JLabel();
         peGradeErrorNotif = new javax.swing.JLabel();
         feGradeErrorNotif = new javax.swing.JLabel();
+        genderErrorNotif = new javax.swing.JLabel();
 
         fullNameField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         studentCodeField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         genderField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        genderField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
+        genderField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Choose...", "Male", "Female", "Other" }));
+        genderField.setToolTipText("");
+        genderField.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         genderField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 genderFieldActionPerformed(evt);
@@ -190,80 +284,75 @@ public class AddForm extends JDialog {
 
         fullNameErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         fullNameErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
-        fullNameErrorNotif.setText("jLabel2");
 
         studentCodeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         studentCodeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
-        studentCodeErrorNotif.setText("jLabel2");
 
         labGradeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labGradeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
-        labGradeErrorNotif.setText("jLabel2");
 
         assignmentGradeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         assignmentGradeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
-        assignmentGradeErrorNotif.setText("jLabel2");
 
         ptGradeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         ptGradeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
-        ptGradeErrorNotif.setText("jLabel2");
 
         peGradeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         peGradeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
-        peGradeErrorNotif.setText("jLabel2");
 
         feGradeErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         feGradeErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
-        feGradeErrorNotif.setText("jLabel2");
+
+        genderErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        genderErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(583, 583, 583)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(583, 583, 583)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(assignmentGradeErrorNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labGradeErrorNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(feGradeErrorNotif, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(ptGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(feGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(assignmentGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(assignmentGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ptGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ptGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(peGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(peGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(peGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(72, Short.MAX_VALUE))
+                                    .addComponent(ptGradeErrorNotif, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                                    .addComponent(peGradeErrorNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 21, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(feGradeErrorNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fullNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fullNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fullNameErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentCodeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentCodeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(genderGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(107, 107, 107)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fullNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fullNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(studentCodeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(studentCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(genderGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fullNameErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(studentCodeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(genderErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(303, 303, 303)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +392,9 @@ public class AddForm extends JDialog {
                     .addComponent(ptGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ptGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ptGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genderErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(peGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -324,26 +415,6 @@ public class AddForm extends JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//    public AddForm(JFrame parentFrame, QuanLi mng) {
-//        super(parentFrame, "Add Student", true);
-//        addBtn.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                String fullName = fullNameField.getText();
-//                String studentCode = studentCodeField.getText();
-//                String gender = genderField.getSelectedItem().toString();
-//                double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
-//                double labGrade = Double.parseDouble(labGradeField.getText());
-//                double ptGrade = Double.parseDouble(ptGradeField.getText());
-//                double peGrade = Double.parseDouble(peGradeField.getText());
-//                double feGrade = Double.parseDouble(feGradeField.getText());
-//                Student student = new Student(fullName, studentCode, gender, assignmentGrade, labGrade, ptGrade, peGrade, feGrade);
-//                mng.AddStudent(student);
-//
-//            }
-//        }
-//        );
-//    }
     private void genderFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_genderFieldActionPerformed
@@ -352,46 +423,6 @@ public class AddForm extends JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_ptGradeFieldActionPerformed
 
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(AddForm.class
-//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(AddForm.class
-//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(AddForm.class
-//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(AddForm.class
-//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                new AddForm().setVisible(true);
-//            }
-//        });
-//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JLabel assignmentGradeErrorNotif;
@@ -403,6 +434,7 @@ public class AddForm extends JDialog {
     private javax.swing.JLabel fullNameErrorNotif;
     private javax.swing.JTextField fullNameField;
     private javax.swing.JLabel fullNameText;
+    private javax.swing.JLabel genderErrorNotif;
     private javax.swing.JComboBox<String> genderField;
     private javax.swing.JLabel genderGradeText;
     private javax.swing.JLabel jLabel1;

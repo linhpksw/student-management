@@ -1,6 +1,8 @@
 package Student;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 class StudentManager {
 
@@ -61,5 +63,17 @@ class StudentManager {
             data[i][7] = student.getFe();
         }
         return data;
+    }
+
+    public int getStudentListSize() {
+        return studentList.size();
+    }
+
+    public Set<String> getAllStudentIDs() {
+        Set<String> studentIDs = new HashSet<>();
+        for (Student student : studentList) {
+            studentIDs.add(student.getStudentID());
+        }
+        return studentIDs;
     }
 }
