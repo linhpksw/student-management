@@ -58,6 +58,8 @@ public class AddForm extends JDialog {
             }
         });
 
+        // Set 'addBtn' as the default button
+        getRootPane().setDefaultButton(addBtn1);
         setVisible(true);
     }
 

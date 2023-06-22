@@ -3,7 +3,6 @@ package Table;
 import java.awt.Color;
 import java.awt.Component;
 import Scroll.ScrollBar;
-import System.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -12,8 +11,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class Table extends JTable {
-
-    private static final ImageIcon EMPTY_IMAGE = new ImageIcon("img1.png");
 
     public Table() {
         setShowHorizontalLines(true);

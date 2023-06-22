@@ -78,8 +78,8 @@
                                   <Component id="noTablePanel" min="-2" pref="989" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="searchBar" min="-2" pref="375" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
+                                  <Component id="searchBar" min="-2" pref="272" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
                                   <Component id="addStudentButton" min="-2" pref="274" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="exportButton" min="-2" max="-2" attributes="0"/>
@@ -755,7 +755,7 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="30" y="30" width="930" height="670"/>
+                  <AbsoluteConstraints x="20" y="30" width="950" height="670"/>
                 </Constraint>
               </Constraints>
 

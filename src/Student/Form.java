@@ -569,7 +569,7 @@ public class Form extends javax.swing.JFrame {
         jScrollPane2.setViewportView(studentTable);
 
         tablePanel.add(jScrollPane2);
-        jScrollPane2.setBounds(30, 30, 930, 670);
+        jScrollPane2.setBounds(20, 30, 950, 670);
 
         noTablePanel.setBackground(new java.awt.Color(246, 189, 176));
         noTablePanel.setRoundBottomLeft(50);
@@ -629,8 +629,8 @@ public class Form extends javax.swing.JFrame {
                                 .addGap(2, 2, 2)
                                 .addComponent(noTablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(227, 227, 227)
+                                .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(330, 330, 330)
                                 .addComponent(addStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(exportButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
