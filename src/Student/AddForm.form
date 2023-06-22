@@ -58,10 +58,10 @@
                                   <Component id="studentCodeField" alignment="0" min="-2" pref="357" max="-2" attributes="0"/>
                                   <Component id="genderGradeText" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                                   <Component id="genderField" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                                  <Component id="addBtn" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
                                   <Component id="fullNameErrorNotif" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
                                   <Component id="studentCodeErrorNotif" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
                                   <Component id="genderErrorNotif" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
+                                  <Component id="addBtn1" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -94,7 +94,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labGradeErrorNotif" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="fullNameErrorNotif" alignment="3" max="32767" attributes="0"/>
+                  <Component id="fullNameErrorNotif" alignment="3" pref="31" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -106,7 +106,7 @@
                   <Component id="assignmentGradeField" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="studentCodeField" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="9" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="assignmentGradeErrorNotif" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="studentCodeErrorNotif" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
@@ -133,11 +133,13 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="peGradeErrorNotif" min="-2" pref="29" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="feGradeText" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="feGradeField" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="addBtn" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="feGradeText" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="feGradeField" min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="addBtn1" min="-2" pref="70" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="feGradeErrorNotif" min="-2" pref="29" max="-2" attributes="0"/>
@@ -294,20 +296,6 @@
         <Property name="text" type="java.lang.String" value="ADD STUDENT"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="addBtn">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="53" green="71" red="eb" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="24" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Add"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="fullNameErrorNotif">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -387,6 +375,44 @@
           <Color blue="36" green="43" red="f4" type="rgb"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="Detail.Button" name="addBtn1">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Student/AddForm/add_button.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Add"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="actionCommand" type="java.lang.String" value="Add"/>
+        <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="8" green="51" red="be" type="rgb"/>
+        </Property>
+        <Property name="borderPainted" type="boolean" value="false"/>
+        <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="8" green="51" red="be" type="rgb"/>
+        </Property>
+        <Property name="colorClick" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="9" green="8c" red="ff" type="rgb"/>
+        </Property>
+        <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="9" green="61" red="e4" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="24" style="1"/>
+        </Property>
+        <Property name="iconTextGap" type="int" value="12"/>
+        <Property name="radius" type="int" value="45"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="addBtn1.setCursor(new Cursor(12));"/>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Form_addStudentButton"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

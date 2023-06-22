@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.util.Set;
 import java.awt.Color;
+import java.awt.Cursor;
 
 public class AddForm extends JDialog {
 
@@ -13,7 +14,7 @@ public class AddForm extends JDialog {
         initComponents();
         setLocationRelativeTo(parentFrame);
 
-        addBtn.addActionListener(new ActionListener() {
+        addBtn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fullNameField.setText(removeExtraSpaces(fullNameField.getText()));
@@ -196,7 +197,6 @@ public class AddForm extends JDialog {
         peGradeText = new javax.swing.JLabel();
         feGradeText = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        addBtn = new javax.swing.JButton();
         fullNameErrorNotif = new javax.swing.JLabel();
         studentCodeErrorNotif = new javax.swing.JLabel();
         labGradeErrorNotif = new javax.swing.JLabel();
@@ -205,6 +205,7 @@ public class AddForm extends JDialog {
         peGradeErrorNotif = new javax.swing.JLabel();
         feGradeErrorNotif = new javax.swing.JLabel();
         genderErrorNotif = new javax.swing.JLabel();
+        addBtn1 = new Detail.Button();
 
         fullNameField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
@@ -263,11 +264,6 @@ public class AddForm extends JDialog {
         jLabel1.setForeground(new java.awt.Color(174, 41, 5));
         jLabel1.setText("ADD STUDENT");
 
-        addBtn.setBackground(new java.awt.Color(235, 113, 83));
-        addBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        addBtn.setForeground(new java.awt.Color(255, 255, 255));
-        addBtn.setText("Add");
-
         fullNameErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         fullNameErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
 
@@ -291,6 +287,22 @@ public class AddForm extends JDialog {
 
         genderErrorNotif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         genderErrorNotif.setForeground(new java.awt.Color(244, 67, 54));
+
+        addBtn1.setBorder(null);
+        addBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        addBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Student/AddForm/add_button.png"))); // NOI18N
+        addBtn1.setText("Add");
+        addBtn1.setToolTipText("");
+        addBtn1.setActionCommand("Add");
+        addBtn1.setBorderColor(new java.awt.Color(190, 81, 8));
+        addBtn1.setBorderPainted(false);
+        addBtn1.setColor(new java.awt.Color(190, 81, 8));
+        addBtn1.setColorClick(new java.awt.Color(255, 140, 9));
+        addBtn1.setColorOver(new java.awt.Color(228, 97, 9));
+        addBtn1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        addBtn1.setIconTextGap(12);
+        addBtn1.setRadius(45);
+        addBtn1.setCursor(new Cursor(12));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -330,10 +342,10 @@ public class AddForm extends JDialog {
                                     .addComponent(studentCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(genderGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(fullNameErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(studentCodeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(genderErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(genderErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(303, 303, 303)
                                 .addComponent(jLabel1)))
@@ -356,7 +368,7 @@ public class AddForm extends JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fullNameErrorNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fullNameErrorNotif, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentCodeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -365,7 +377,7 @@ public class AddForm extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(assignmentGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(studentCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(assignmentGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(studentCodeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -388,11 +400,12 @@ public class AddForm extends JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(peGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(feGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(feGradeText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(feGradeField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(feGradeErrorNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
@@ -410,7 +423,7 @@ public class AddForm extends JDialog {
     }//GEN-LAST:event_ptGradeFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addBtn;
+    private Detail.Button addBtn1;
     private javax.swing.JLabel assignmentGradeErrorNotif;
     private javax.swing.JTextField assignmentGradeField;
     private javax.swing.JLabel assignmentGradeText;
