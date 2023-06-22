@@ -18,7 +18,7 @@ public class AddForm extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fullNameField.setText(removeExtraSpaces(fullNameField.getText()));
-                studentCodeField.setText(studentCodeField.getText().trim());
+                studentCodeField.setText(studentCodeField.getText().trim().toUpperCase());
                 assignmentGradeField.setText(assignmentGradeField.getText().trim());
                 labGradeField.setText(labGradeField.getText().trim());
                 ptGradeField.setText(ptGradeField.getText().trim());
@@ -105,7 +105,7 @@ public class AddForm extends JDialog {
     }
 
     private boolean checkGender(String gender) {
-        if (gender.equals("Choose...")) {
+        if (!(gender.equals("Male")) || !(gender.equals("Female")) || !(gender.equals("Other"))) {
             genderErrorNotif.setText("Please choose a correct option!");
             return false;
         }
@@ -148,25 +148,12 @@ public class AddForm extends JDialog {
         return result;
     }
 
-    private boolean isValidRange(String OGassignmentGrade, String OGlabGrade, String OGptGrade, String OgpeGrade, String OGfeGrade) {
-        double assignmentGrade = Double.parseDouble(assignmentGradeField.getText());
-        double labGrade = Double.parseDouble(labGradeField.getText());
-        double ptGrade = Double.parseDouble(ptGradeField.getText());
-        double peGrade = Double.parseDouble(peGradeField.getText());
-        double feGrade = Double.parseDouble(feGradeField.getText());
-        return assignmentGrade >= 0 && assignmentGrade <= 10
-                && labGrade >= 0 && labGrade <= 10
-                && ptGrade >= 0 && ptGrade <= 10
-                && peGrade >= 0 && peGrade <= 10
-                && feGrade >= 0 && feGrade <= 10;
-    }
-
     private static boolean isValidStudentCode(String input) {
         if (input.length() != 8) {
             return false;
         }
 
-        if (!input.startsWith("HE")) {
+        if (!(input.charAt(0) == 'H') || !(input.charAt(1) == 'E')) {
             return false;
         }
 
