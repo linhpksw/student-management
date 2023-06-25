@@ -952,6 +952,9 @@
               <Image iconType="3" name="/Detail/Icon/failIcon.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exportButtonActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="exportButton.setCursor(new Cursor(12));"/>
           </AuxValues>

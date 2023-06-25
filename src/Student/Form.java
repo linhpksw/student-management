@@ -14,6 +14,9 @@ import Detail.StudentInfo;
 import Search.SearchAction;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Form extends javax.swing.JFrame {
 
@@ -614,6 +617,11 @@ public class Form extends javax.swing.JFrame {
         exportButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Detail/Icon/72brown.png"))); // NOI18N
         exportButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Detail/Icon/failIcon.png"))); // NOI18N
         exportButton.setCursor(new Cursor(12));
+        exportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -684,17 +692,51 @@ public class Form extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void exportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportButtonActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showSaveDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            // make sure to save as .txt
+            if (!file.getName().toLowerCase().endsWith(".txt")) {
+                JOptionPane.showMessageDialog(null, "Please include '.txt' in your file name", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Print the absolute path of the file
+            System.out.println("Writing to file: " + file.getAbsolutePath());
+
+            PrintWriter writer = null;
+            try {
+                writer = new PrintWriter(file, "UTF-8");
+                for (Student student : mng.getStudentList()) {
+                    writer.println(student);
+                }
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "File could not be saved", "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            } finally {
+                if (writer != null) {
+                    writer.close();
+                }
+            }
+        }
+
+    }//GEN-LAST:event_exportButtonActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
                 | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         // </editor-fold>
 
